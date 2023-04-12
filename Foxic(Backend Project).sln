@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foxic(Backend Project)", "Foxic(Backend Project)\Foxic(Backend Project).csproj", "{779EDC28-0F1A-4600-B3C7-66548E19AB3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{779EDC28-0F1A-4600-B3C7-66548E19AB3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779EDC28-0F1A-4600-B3C7-66548E19AB3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779EDC28-0F1A-4600-B3C7-66548E19AB3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779EDC28-0F1A-4600-B3C7-66548E19AB3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {39CB4867-9269-4E56-A4F9-2CE91B6B2443}
+	EndGlobalSection
+EndGlobal
