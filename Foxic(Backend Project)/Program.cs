@@ -1,5 +1,7 @@
 using Foxic_Backend_Project_.DAL;
+using Foxic_Backend_Project_.Entities;
 using Foxic_Backend_Project_.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,25 @@ builder.Services.AddDbContext<FoxicDbContext>(opt =>
 {
 	opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
+builder.Services.AddIdentity<User, IdentityRole>(opt =>
+{
+
+	opt.Password.RequiredLength = 6;
+	opt.Password.RequiredUniqueChars = 3;
+	opt.Password.RequireNonAlphanumeric = false;
+	opt.Password.RequireDigit = true;
+
+
+	opt.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnm123456789_-";
+
+	opt.Lockout.MaxFailedAccessAttempts = 5;
+	opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+}).AddEntityFrameworkStores<FoxicDbContext>();
+
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +50,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
