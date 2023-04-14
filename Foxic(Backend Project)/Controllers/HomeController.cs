@@ -22,6 +22,7 @@ namespace Foxic_Backend_Project_.Controllers
 			ViewBag.Products = _context.Products.Include(p=>p.ProductSizeColors).ThenInclude(psc=>psc.Color)
                                                  .Include(p=>p.ProductImages)
                                                  .Include(p=>p.Collection)
+                                                 .Include(p=>p.ProductCategories).ThenInclude(pc=>pc.Category)
                                                  .Take(8).
                                                  ToList();
 			return View(slider);

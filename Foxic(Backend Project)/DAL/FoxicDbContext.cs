@@ -37,5 +37,11 @@ namespace Foxic_Backend_Project_.DAL
 					IsUnique();
 			base.OnModelCreating(modelBuilder);
 		}
+
+
+
+
+
+
 	}
 }

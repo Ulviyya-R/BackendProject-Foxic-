@@ -22,6 +22,30 @@ namespace Foxic_Backend_Project_.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Foxic_Backend_Project_.Entities.BasketItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ProductSizeColorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SaleQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductSizeColorId");
+
+                    b.ToTable("BasketItem");
+                });
+
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -68,6 +92,10 @@ namespace Foxic_Backend_Project_.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Colors");
@@ -90,35 +118,6 @@ namespace Foxic_Backend_Project_.Migrations
                     b.ToTable("GlobalTabs");
                 });
 
-            modelBuilder.Entity("Foxic_Backend_Project_.Entities.Guarantee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Chlorine")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Cleaning")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lining")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Polyester")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Guarantees");
-                });
-
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -134,9 +133,6 @@ namespace Foxic_Backend_Project_.Migrations
                         .HasColumnType("decimal(6,2)");
 
                     b.Property<int>("GlobalTabId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GuaranteeId")
                         .HasColumnType("int");
 
                     b.Property<string>("LongDesc")
@@ -159,8 +155,6 @@ namespace Foxic_Backend_Project_.Migrations
                     b.HasIndex("CollectionId");
 
                     b.HasIndex("GlobalTabId");
-
-                    b.HasIndex("GuaranteeId");
 
                     b.ToTable("Products");
                 });
@@ -555,6 +549,17 @@ namespace Foxic_Backend_Project_.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Foxic_Backend_Project_.Entities.BasketItem", b =>
+                {
+                    b.HasOne("Foxic_Backend_Project_.Entities.ProductSizeColor", "ProductSizeColor")
+                        .WithMany("BasketItems")
+                        .HasForeignKey("ProductSizeColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductSizeColor");
+                });
+
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Product", b =>
                 {
                     b.HasOne("Foxic_Backend_Project_.Entities.Collection", "Collection")
@@ -569,17 +574,9 @@ namespace Foxic_Backend_Project_.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Foxic_Backend_Project_.Entities.Guarantee", "Guarantees")
-                        .WithMany("Products")
-                        .HasForeignKey("GuaranteeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Collection");
 
                     b.Navigation("GlobalTabs");
-
-                    b.Navigation("Guarantees");
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.ProductCategory", b =>
@@ -729,11 +726,6 @@ namespace Foxic_Backend_Project_.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("Foxic_Backend_Project_.Entities.Guarantee", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Product", b =>
                 {
                     b.Navigation("ProductCategories");
@@ -743,6 +735,11 @@ namespace Foxic_Backend_Project_.Migrations
                     b.Navigation("ProductSizeColors");
 
                     b.Navigation("ProductTags");
+                });
+
+            modelBuilder.Entity("Foxic_Backend_Project_.Entities.ProductSizeColor", b =>
+                {
+                    b.Navigation("BasketItems");
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Size", b =>

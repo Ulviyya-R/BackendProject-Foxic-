@@ -15,6 +15,142 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\BackEnd Project\Foxic(Backend Project)\Foxic(Backend Project)
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Category/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENhdGVnb3J5XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Category/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENhdGVnb3J5XERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Category/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENhdGVnb3J5XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Category/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENhdGVnb3J5XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENhdGVnb3J5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Collection/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbGxlY3Rpb25cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Collection/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbGxlY3Rpb25cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Collection/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbGxlY3Rpb25cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Collection/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbGxlY3Rpb25cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Collection/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbGxlY3Rpb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Color/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbG9yXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Color/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbG9yXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Color/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbG9yXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Color/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbG9yXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Color/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbG9yXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFByb2R1Y3RzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNoYXJlZFxfTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Size/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNpemVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Size/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNpemVcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Size/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNpemVcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Size/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNpemVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Size/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNpemVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Slider/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNsaWRlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Slider/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNsaWRlclxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Slider/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNsaWRlclxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Slider/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNsaWRlclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Slider/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNsaWRlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Tag/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFRhZ1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Tag/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFRhZ1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Tag/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFRhZ1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Tag/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFRhZ1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Tag/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFRhZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
