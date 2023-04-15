@@ -36,7 +36,8 @@
 						<!-- /Menu Toggle -->
 					</div>
 					<div class="col-auto hdr-logo">
-						<a href="index.html" class="logo"><img src="~/assets/images/skins/fashion/@settings["Logo"]" alt="Logo"></a>
+		   	<a asp-controller="Home" asp-action="Index" class="logo"><img style="width:100px; height:50px" src="~/assets/images/skins/fashion/settingImage/@settings["Logo"]" alt="Logo"></a>
+
 					</div>
 					<!--navigation-->
 					<div class="hdr-nav hide-mobile nav-holder-s">
@@ -175,7 +176,7 @@
 							<!-- /Menu Toggle -->
 						</div>
 						<div class="col-auto hdr-logo">
-							<a href="index.html" class="logo"><img src="~/assets/images/skins/fashion/@settings["Logo"]" alt="Logo"></a>
+							<a asp-controller="Home" asp-action="Index" class="logo"><img style="width:100px; height:50px" src="~/assets/images/skins/fashion/settingImage/@settings["Logo"]" alt="Logo"></a>
 						</div>
 						<!--navigation-->
 						<div class="hdr-nav hide-mobile nav-holder justify-content-center px-4">
@@ -187,6 +188,10 @@
 								</li>
 								<li class="mmenu-item--simple">
 									<a asp-controller="Shop" asp-action="Index">Shop</a>
+						
+								</li>
+								<li class="mmenu-item--simple">
+									<a asp-controller="Contact" asp-action="Index">Contact</a>
 						
 								</li>
 									</div>
@@ -460,9 +465,10 @@
 					{
 						<li><span class="dropdown-item">@User.Identity.Name</span> </li>
 						<li><a asp-controller="Account" asp-action=""><span>My Account</span></a></li>
-							@if (User.IsInRole(Roles.Admin.ToString()))
+						@if (User.IsInRole(Roles.Admin.ToString()))
 						{
-							<li><a asp-area ="FoxicArea" asp-controller="Products" asp-action="Index"><span>Admin Panel</span><i class="icon-login"></i></a>
+							<li>
+								<a asp-area="FoxicArea" asp-controller="Products" asp-action="Index"><span>Admin Panel</span><i class="icon-login"></i></a>
 							</li>
 						}
 

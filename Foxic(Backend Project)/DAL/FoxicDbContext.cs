@@ -25,13 +25,16 @@ namespace Foxic_Backend_Project_.DAL
         public DbSet<Collection> Collections { get; set; }
 		
 		public DbSet<Product> Products { get; set; }
+        public DbSet<WishList> WishLists { get; set; }
+        public DbSet<WishListItem> wishListItems { get; set; }
 
 
 
 
 
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Setting>().
 					HasIndex(s => s.Key).

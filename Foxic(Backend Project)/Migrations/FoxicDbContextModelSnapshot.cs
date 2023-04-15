@@ -274,7 +274,6 @@ namespace Foxic_Backend_Project_.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("SettingImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Value")

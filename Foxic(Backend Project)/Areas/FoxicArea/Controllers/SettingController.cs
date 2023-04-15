@@ -1,9 +1,9 @@
 ﻿using Foxic_Backend_Project_.DAL;
 using Foxic_Backend_Project_.Entities;
 using Foxic_Backend_Project_.Utilites.Extensions;
-using Foxic_Backend_Project_.Utilites.Roles;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
 
 namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
 {
@@ -36,24 +36,14 @@ namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Create(Setting newSetting)
 		{
-			if (newSetting.Image is null)
+			if (!ModelState.IsValid) return View();
+		
+			if(newSetting.Image != null && newSetting.Image.Length > 0)
 			{
-				ModelState.AddModelError("Image", "Please Select Image");
-				return View();
-			}
-			if (!newSetting.Image.IsValidFile("image/"))
-			{
-				ModelState.AddModelError("Image", "Please Select Image Tag");
-				return View();
-			}
-			if (!newSetting.Image.IsValidLength(2))
-			{
-				ModelState.AddModelError("Image", "Please Select Image which size max 2MB");
-				return View();
-			}
-
 			var imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "skins", "fashion");
-			newSetting.SettingImagePath = await newSetting.Image.CreateImage(imagefolderPath, "settingImage");
+			newSetting.Value = await newSetting.Image.CreateImage(imagefolderPath, "settingImage");
+
+			}
 			_context.Settings.Add(newSetting);
 			_context.SaveChanges();
 			return RedirectToAction(nameof(Index));
@@ -74,25 +64,34 @@ namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Edit(int id, Setting editedSetting)
-		{
-			if (id != editedSetting.Id) return NotFound();
-			Setting? setting = _context.Settings.FirstOrDefault(s =>s.Id == id);
-			if (!ModelState.IsValid) return View(setting);
-			_context.Entry<Setting>(setting).CurrentValues.SetValues(editedSetting);
+        public async Task<IActionResult> Edit(int id, Setting editedSetting)
+        {
+            Setting? setting = _context.Settings.FirstOrDefault(s => s.Id == id);
+            if (setting == null)
+            {
+                return NotFound();
+            }
 
-			if (editedSetting.Image is not null)
-			{
-				string imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "skins", "fashion");
-				string filepath = Path.Combine(imagefolderPath, "settingImage", setting.SettingImagePath);
-				FileUpload.DeleteImage(filepath);
-				setting.SettingImagePath = await editedSetting.Image.CreateImage(imagefolderPath, "settingImage");
-			}
-			_context.SaveChanges();
-			return RedirectToAction(nameof(Index));
-		}
+            if (!ModelState.IsValid)
+            {
+                return View(setting);
+            }
 
-		public IActionResult Details(int id)
+            _context.Entry<Setting>(setting).CurrentValues.SetValues(editedSetting);
+
+            if (editedSetting.Image is not null)
+            {
+                string imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "skins", "fashion");
+                string filepath = Path.Combine(imagefolderPath, "settingImage", setting.Value);
+                FileUpload.DeleteImage(filepath);
+                setting.Value = await editedSetting.Image.CreateImage(imagefolderPath, "settingImage");
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Details(int id)
 		{
 			if (id == 0) return NotFound();
 			Setting? setting = _context.Settings.FirstOrDefault(s => s.Id == id);
@@ -115,7 +114,7 @@ namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
 			Setting? setting = _context.Settings.FirstOrDefault(s => s.Id == id);
 			if (setting is null) return NotFound();
 			string imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "skins", "fashion");
-			string filepath = Path.Combine(imagefolderPath, "settingImage", setting.SettingImagePath);
+			string filepath = Path.Combine(imagefolderPath, "settingImage");
 			FileUpload.DeleteImage(filepath);
 			_context.Settings.Remove(setting);
 			_context.SaveChanges();

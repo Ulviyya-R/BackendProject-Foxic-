@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C7sw06vevZOH1F+PC2H25hoXrYixilNMKIL9hIcpGgQ=",
+  "Hash": "WJC49CN/5xz8gH6i+xXlgQHOKl5y5PKpYbwxnDeHNi8=",
   "Source": "Foxic(Backend Project)",
   "BasePath": "_content/Foxic(Backend Project)",
   "Mode": "Default",
@@ -5353,6 +5353,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\pages\\about-bg.jpg"
+    },
+    {
+      "Identity": "D:\\BackEnd Project\\Foxic(Backend Project)\\Foxic(Backend Project)\\wwwroot\\assets\\images\\pages\\Contactbackg.webp",
+      "SourceId": "Foxic(Backend Project)",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BackEnd Project\\Foxic(Backend Project)\\Foxic(Backend Project)\\wwwroot\\",
+      "BasePath": "_content/Foxic(Backend Project)",
+      "RelativePath": "assets/images/pages/Contactbackg.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\pages\\Contactbackg.webp"
     },
     {
       "Identity": "D:\\BackEnd Project\\Foxic(Backend Project)\\Foxic(Backend Project)\\wwwroot\\assets\\images\\pages\\contact-bg.jpg",
@@ -12629,6 +12646,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\skins\\fashion\\products\\ZoomFreak4White.webp"
+    },
+    {
+      "Identity": "D:\\BackEnd Project\\Foxic(Backend Project)\\Foxic(Backend Project)\\wwwroot\\assets\\images\\skins\\fashion\\settingImage\\251308841490_656598946004030_8061826086378681496_n.jpg",
+      "SourceId": "Foxic(Backend Project)",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BackEnd Project\\Foxic(Backend Project)\\Foxic(Backend Project)\\wwwroot\\",
+      "BasePath": "_content/Foxic(Backend Project)",
+      "RelativePath": "assets/images/skins/fashion/settingImage/251308841490_656598946004030_8061826086378681496_n.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\skins\\fashion\\settingImage\\251308841490_656598946004030_8061826086378681496_n.jpg"
+    },
+    {
+      "Identity": "D:\\BackEnd Project\\Foxic(Backend Project)\\Foxic(Backend Project)\\wwwroot\\assets\\images\\skins\\fashion\\settingImage\\695nike-logo-47A65A59D5-seeklogo.com.png",
+      "SourceId": "Foxic(Backend Project)",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BackEnd Project\\Foxic(Backend Project)\\Foxic(Backend Project)\\wwwroot\\",
+      "BasePath": "_content/Foxic(Backend Project)",
+      "RelativePath": "assets/images/skins/fashion/settingImage/695nike-logo-47A65A59D5-seeklogo.com.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\skins\\fashion\\settingImage\\695nike-logo-47A65A59D5-seeklogo.com.png"
     },
     {
       "Identity": "D:\\BackEnd Project\\Foxic(Backend Project)\\Foxic(Backend Project)\\wwwroot\\assets\\images\\skins\\fashion\\settingImage\\878nike-logo-47A65A59D5-seeklogo.com.png",
