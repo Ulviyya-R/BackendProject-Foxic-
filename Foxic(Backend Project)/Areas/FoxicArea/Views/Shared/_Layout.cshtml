@@ -27,8 +27,8 @@
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/assets/css/font-awesome.min.css" />
 
-</head>
 @RenderSection("Css",false)
+</head>
 <body>
     <div class="container-scroller">
         <div class="row p-0 m-0 proBanner" id="proBanner">
@@ -206,13 +206,21 @@
                     <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                             <i class="mdi mdi-circle-outline menu-icon"></i>
-                            <span class="menu-title">UI Elements</span>
+                            <span class="menu-title">Controllers</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Products" asp-action="Index">Products Controller</a></li>
+                                <li class="nav-item"> <a class="nav-link" asp-controller="Category" asp-action="Index">Category Controller</a></li>
+                                <li class="nav-item"> <a class="nav-link"  asp-controller="Color" asp-action="Index">Color Controller</a></li>
+                                <li class="nav-item"> <a class="nav-link"  asp-controller="Size" asp-action="Index">Size Controller</a></li>
+                                <li class="nav-item"> <a class="nav-link"  asp-controller="Slider" asp-action="Index">Slider Controller</a></li>
+                                <li class="nav-item"> <a class="nav-link"  asp-controller="Tag" asp-action="Index">Tag Controller</a></li>
+                                <li class="nav-item"> <a class="nav-link"  asp-controller="Collection" asp-action="Index">Collection Controller</a></li>
+                                <li class="nav-item"> <a class="nav-link"  asp-controller="Setting" asp-action="Index">Setting Controller</a></li>
+
+
                             </ul>
                         </div>
                     </li>
@@ -301,7 +309,8 @@
     <script src="~/admin/assets/js/dataTables.bootstrap4.js"></script>
     <!-- End custom js for this page-->
     @RenderSection("Scripts",false)
-    @RenderSection("Scriptss",false)
+    @RenderSection("Scripts2",false)
+
     <script src="~/admin/assets/js/jquery.cookie.js" type="text/javascript"></script>
 </body>
 

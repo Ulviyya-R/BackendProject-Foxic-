@@ -1,0 +1,196 @@
+﻿@model Foxic_Backend_Project_.ViewModels.ProductVM
+
+@{
+    ViewData["Title"] = "Edit";
+    var globalTabs = ViewBag.GlobalTabs;
+    var categories = ViewBag.Categories;
+    var tags = ViewBag.Tags;
+}
+
+@section Css{
+    <style>
+        .main {
+            border: 1px solid red;
+        }
+
+        .hover {
+            border: 1px solid green;
+        }
+    </style>
+}
+
+<h1>Edit</h1>
+
+<h4>ProductVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-9">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div class="row images my-4">
+                @foreach (var image in Model.AllImages)
+                {
+                    <div class="col-2">
+                        <div class="card" style="width:152px">
+                            <img style="width:150px;height:150px;object-fit:contain" src="~/assets/images/skins/fashion/products/@image.Path" class="card-img-top @(image.IsMain == true ? "main" : "") @(image.IsMain==null ? "hover" : "")" />
+                            @if (image.IsMain == false)
+                            {
+                                <div class="card-button">
+                                    <button type="button" class="btn btn-danger w-100 delbtn">Delete Image</button>
+                                </div>
+                            }
+                            <input type="hidden" name="ImagesId" value="@image.Id" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="MainPhoto" class="control-label"></label>
+                <input asp-for="MainPhoto" class="form-control" / accept="image/*">
+                <span asp-validation-for="MainPhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Images" class="control-label"></label>
+                <input asp-for="Images" class="form-control" / accept="image/*">
+                <span asp-validation-for="Images" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiscountPrice" class="control-label"></label>
+                <input asp-for="DiscountPrice" class="form-control" />
+                <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortDesc" class="control-label"></label>
+                <input asp-for="ShortDesc" class="form-control" />
+                <span asp-validation-for="ShortDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LongDesc" class="control-label"></label>
+                <input asp-for="LongDesc" class="form-control" />
+                <span asp-validation-for="LongDesc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GlobalTabId" class="control-label"></label>
+                <select asp-for="GlobalTabId" class="form-control" asp-items="@(new SelectList( ViewBag.GlobalTabs,"Id","Text"))"> </select>
+                <span asp-validation-for="GlobalTabId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryIds" class="control-label"></label>
+                <select asp-for="CategoryIds" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))" class="form-control"></select>
+                <span asp-validation-for="CategoryIds" class="text-danger"></span>
+            </div>
+                        <div class="form-group">
+                <label asp-for="TagIds" class="control-label"></label>
+                <select asp-for="TagIds" asp-items="@(new SelectList(ViewBag.Tags,"Id","Name"))" class="form-control"></select>
+                <span asp-validation-for="TagIds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CollectionId" class="control-label"></label>
+                <select asp-for="CollectionId" class="form-control"  asp-items="@(new SelectList(ViewBag.Collections,"Id","Name"))"></select>
+                <span asp-validation-for="CollectionId" class="text-danger"></span>
+            </div>
+            <div class="mt-5 form-group">
+                <label class="control-label">Size,Color and Quantity</label>
+                <div class="d-flex">
+                    <select class="form-control IdSize" asp-items="@(new SelectList(ViewBag.Sizes,"Id","Name"))"></select>
+                    <select class="form-control IdColor" asp-items="@(new SelectList(ViewBag.Colors, "Id", "Name"))"></select>
+                    <input class="form-control IdQuantity" type="number" class="mt-4 " placeholder="How much this plant?" />
+                </div>
+                <button class="AddButton btn btn-success " style="width:200px;background:navy" type="button">Click Add</button>
+                <input type="hidden" id="plant-data" name="ColorsSizesQuantity" />
+
+
+            </div>
+            <div class="form-group">
+                <p>
+                    @foreach (var productSizeColor in Model.ProductSizeColor)
+                    {
+                    <p style=" background: black;
+                              color: white;
+                              width: max-content;
+                              height: 60px;
+                              padding-top: 20px;">
+                        <span>@productSizeColor.Size.Name</span> ===>  <span>@productSizeColor.Color.Name</span> ===> <span>@productSizeColor.Quantity</span>
+                        <button type="button" style="margin-top: -8px" class="csdelete btn btn-danger" data-id="@productSizeColor.Id"> X </button>
+                    </p>
+                    <input type="hidden" id="cs-data" name="DeleteColorSize" />
+                    }
+                </p>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts{
+    <script>
+        let delbtn = document.querySelectorAll(".delbtn");
+        delbtn.forEach(btn => {
+            btn.addEventListener("click", function () {
+                this.parentElement.parentElement.parentElement.remove();
+                console.log(this.parentElement.parentElement.parentElement)
+            })
+        })
+
+    </script>
+
+}
+    @section Scripts2{
+    <script>
+        let xbuton = document.querySelectorAll(".csdelete")
+        xbuton.forEach(btn => {
+            btn.addEventListener("click", function () {
+                this.parentElement.remove();
+                let csid = this.getAttribute('data-id');
+                let hiddeninput = document.getElementById('cs-data');
+                let hiddenValue = hiddeninput.value;
+
+                if (hiddenValue) {
+                    hiddenValue += ',' + csid;
+                }
+                else {
+                    hiddenValue = csid;
+                }
+                hiddeninput.value = hiddenValue;
+            })
+        })
+        var addButton = document.querySelector('.AddButton');
+        addButton.addEventListener('click', function () {
+            var idSize = document.querySelector('.IdSize').value;
+            var idColor = document.querySelector('.IdColor').value;
+            var idQuantity = this.previousElementSibling.querySelector('.IdQuantity').value;
+            if (idQuantity < 0) {
+                alert("- you can not use");
+                return;
+            }
+            var HiddenInput = document.getElementById('plant-data');
+            var HiddenInputValue = idSize + '-' + idColor + '-' + idQuantity;
+            var realHiddenValue = HiddenInput.value;
+            if (realHiddenValue) {
+                realHiddenValue += ',' + HiddenInputValue;
+            } else {
+                realHiddenValue = HiddenInputValue;
+            }
+            HiddenInput.value = realHiddenValue;
+        });
+    </script>
+     }
+

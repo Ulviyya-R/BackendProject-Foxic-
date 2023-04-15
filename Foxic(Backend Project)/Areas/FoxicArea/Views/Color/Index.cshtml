@@ -15,7 +15,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.ColorImagePath)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +28,11 @@
                          <img style="width:100px; object-fit:contain" src="~/assets/images/skins/fashion/color/@item.ColorImagePath"
                      alt="Inner Image" />
 
+                    </td>
+                    <td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                </td>
                     </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

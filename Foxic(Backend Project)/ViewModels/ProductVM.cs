@@ -24,8 +24,13 @@ namespace Foxic_Backend_Project_.ViewModels
        
         [NotMapped]
         public ICollection<IFormFile>? Images { get; set; }
+        [NotMapped]
+
         public ICollection<ProductImage>? AllImages { get; set; }
+        [NotMapped]
+
         public ICollection<int>? ImagesId { get; set; }
+        [NotMapped]
 
         public string? ColorsSizesQuantity { get; set; }
         public string? DeleteColorSize { get; set; }

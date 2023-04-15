@@ -2,12 +2,16 @@
 using Foxic_Backend_Project_.DAL;
 using Foxic_Backend_Project_.Entities;
 using Foxic_Backend_Project_.Utilites.Extensions;
+using Foxic_Backend_Project_.Utilites.Roles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
 {
 	[Area("FoxicArea")]
+	[Authorize(Roles = "Admin, Moderator")]
+
 
 	public class SliderController:Controller
 	{

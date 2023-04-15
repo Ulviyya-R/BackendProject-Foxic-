@@ -12,7 +12,8 @@ namespace Foxic_Backend_Project_.Entities
 		public decimal? DiscountPrice { get; set; }
 		public string ShortDesc { get; set; }
 		public string LongDesc { get; set; }
-		public int CollectionId { get; set; }
+
+        public int CollectionId { get; set; }
 		public Collection Collection { get; set; }
 		public int GlobalTabId { get; set; }
 		public GlobalTab GlobalTabs { get; set; }

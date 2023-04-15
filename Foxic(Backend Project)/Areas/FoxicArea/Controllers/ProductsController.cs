@@ -2,13 +2,16 @@
 using Foxic_Backend_Project_.Entities;
 using Foxic_Backend_Project_.Utilites.Extensions;
 using Foxic_Backend_Project_.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
 {
     [Area("FoxicArea")]
-    public class ProductsController : Controller
+	[Authorize(Roles = "Admin, Moderator")]
+
+	public class ProductsController : Controller
     {
         private readonly FoxicDbContext _context;
         private readonly IWebHostEnvironment _env;
@@ -135,6 +138,7 @@ namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
                                                 .Include(p => p.ProductTags)
                                                 .Include(p => p.ProductImages)
                                                 .Include(p=>p.Collection)
+                                                .Include(p=>p.GlobalTabs)
                                                 .FirstOrDefaultAsync(p => p.Id == id);
             if (product is null) return BadRequest();
 
@@ -206,12 +210,48 @@ namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        public IActionResult Details(int id)
+        {
+            if (id == 0) return NotFound();
+            AllViewBagsData();
+            ProductVM? VM = EditedModel(id);
+            return VM is null ? BadRequest() : View(VM);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            if (id == 0) return NotFound();
+            AllViewBagsData();
+            ProductVM? VM = EditedModel(id);
+            if (VM is null) return NotFound();
+            return View(VM);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id, ProductVM deleteproducts)
+        {
+            if (id != deleteproducts.Id) return NotFound();
+            Product? product = _context.Products.FirstOrDefault(p => p.Id == id);
+             if (product is null) return NotFound();
+            IEnumerable<string> removables = product.ProductImages.Where(p => !deleteproducts.ImagesId.Contains(p.Id)).Select(i => i.Path).AsEnumerable();
+            string imagefolderPath = Path.Combine(_env.WebRootPath, "assets", "images", "skins", "fashion");
+            foreach (string removable in removables)
+            {
+                string filepath = Path.Combine(imagefolderPath, "products", removable);
+                FileUpload.DeleteImage(filepath);
+            }
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
         /// <summary>
         /// I hid the viewbags I sent in actions here
         /// </summary>
         private void AllViewBagsData()
         {
-            ViewBag.Informations = _context.GlobalTabs.AsEnumerable();
+            ViewBag.GlobalTabs = _context.GlobalTabs.AsEnumerable();
             ViewBag.Collections = _context.Collections.AsEnumerable();
             ViewBag.Categories = _context.Categories.AsEnumerable();
             ViewBag.Tags = _context.Tags.AsEnumerable();
@@ -235,9 +275,11 @@ namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
                                 Id = p.Id,
                                 Name = p.Name,
                                 ShortDesc = p.ShortDesc,
+                                LongDesc = p.LongDesc,
                                 Price = p.Price,
                                 DiscountPrice = p.DiscountPrice,
                                 GlobalTabId = p.GlobalTabId,
+                                CollectionId = p.CollectionId,
                                 ProductSizeColor = p.ProductSizeColors,
                                 CategoryIds = p.ProductCategories.Select(p => p.CategoryId).ToList(),
                                 TagIds = p.ProductTags.Select(p => p.TagId).ToList(),

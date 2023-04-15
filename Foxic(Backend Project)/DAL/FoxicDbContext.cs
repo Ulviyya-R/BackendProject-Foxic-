@@ -1,6 +1,7 @@
 ﻿using Foxic_Backend_Project_.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Foxic_Backend_Project_.ViewModels;
 
 namespace Foxic_Backend_Project_.DAL
 {
@@ -37,6 +38,30 @@ namespace Foxic_Backend_Project_.DAL
 					IsUnique();
 			base.OnModelCreating(modelBuilder);
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

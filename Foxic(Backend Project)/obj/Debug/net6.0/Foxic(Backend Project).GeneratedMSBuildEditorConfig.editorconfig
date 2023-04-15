@@ -75,8 +75,44 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXENvbG9yXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Products/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFByb2R1Y3RzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Products/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFByb2R1Y3RzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Products/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFByb2R1Y3RzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Products/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFByb2R1Y3RzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFByb2R1Y3RzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Setting/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNldHRpbmdcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Setting/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNldHRpbmdcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Setting/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNldHRpbmdcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Setting/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNldHRpbmdcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Setting/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRm94aWNBcmVhXFZpZXdzXFNldHRpbmdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/BackEnd Project/Foxic(Backend Project)/Foxic(Backend Project)/Areas/FoxicArea/Views/Shared/_Layout.cshtml]

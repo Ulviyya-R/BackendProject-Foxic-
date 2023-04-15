@@ -1,4 +1,5 @@
 ﻿using Foxic_Backend_Project_.Entities;
+using Foxic_Backend_Project_.Utilites.Roles;
 using Foxic_Backend_Project_.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ namespace Foxic_Backend_Project_.Controllers
 	{
 		private readonly UserManager<User> _userManager;
 		private readonly SignInManager<User> _signInManager;
+		private readonly RoleManager<IdentityRole> _roleManager;
 
-		public AccountController(UserManager<User> userManager,SignInManager<User> signInManager)
+		public AccountController(UserManager<User> userManager,SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
+			_roleManager = roleManager;
 		}
 		public IActionResult Register()
 		{
@@ -42,6 +45,7 @@ namespace Foxic_Backend_Project_.Controllers
 				}
 				return View();
 			}
+			await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
 			return RedirectToAction("Login", "Account");
 
 		}
@@ -54,7 +58,6 @@ namespace Foxic_Backend_Project_.Controllers
 		}
 
 		[HttpPost]
-		[AutoValidateAntiforgeryToken]
 		public async Task<IActionResult> Login(LoginVM login)
 		{
 			if (!ModelState.IsValid) return View();
@@ -83,5 +86,12 @@ namespace Foxic_Backend_Project_.Controllers
 			await _signInManager.SignOutAsync();
 			return RedirectToAction("Index", "Home");
 		}
+
+		//public async Task CreateRoles()
+		//{
+		//	await _roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
+		//	await _roleManager.CreateAsync(new IdentityRole(Roles.Moderator.ToString()));
+		//	await _roleManager.CreateAsync(new IdentityRole(Roles.Member.ToString()));
+		//}
 	}
 }

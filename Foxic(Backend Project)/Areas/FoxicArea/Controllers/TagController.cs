@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Foxic_Backend_Project_.DAL;
 using Foxic_Backend_Project_.Entities;
+using Foxic_Backend_Project_.Utilites.Roles;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
 {
 	[Area("FoxicArea")]
+	[Authorize(Roles = "Admin, Moderator")]
 
 	public class TagController:Controller
 	{

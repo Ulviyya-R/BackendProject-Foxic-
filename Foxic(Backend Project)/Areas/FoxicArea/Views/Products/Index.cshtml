@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                Image
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -30,12 +33,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.Collection)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GlobalTabs)
-            </th>
+           
             <th>
                 ColorSize
             </th>
+          
         </tr>
     </thead>
     <tbody>
@@ -55,13 +57,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DiscountPrice)
             </td>
+              
                 <td>
                     @(item.ShortDesc.Length > 15 ? string.Concat(item.ShortDesc.Substring(0, 15), "...") : item.ShortDesc)
-                <td>
+                </td>
                 <td>
                             @(item.LongDesc.Length > 15 ? string.Concat(item.LongDesc.Substring(0, 15), "...") : item.LongDesc)
+                </td>
                 <td>
-           
+                    @Html.DisplayFor(modelItem => item.Collection.Name)
+                </td>
                 <td>
                                         @foreach (var colorSize in item.ProductSizeColors)
                                         {
