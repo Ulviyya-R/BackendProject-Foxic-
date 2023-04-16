@@ -48,7 +48,7 @@
 							<!-- Header Search -->
 							<div class="search_container_desktop">
 								<div class="dropdn dropdn_search dropdn_fullwidth">
-									<a href="#" class="dropdn-link  js-dropdn-link only-icon"><i class="icon-search"></i><span class="dropdn-link-txt">Search</span></a>
+									<a href="#" class="dropdn-link  js-dropdn-link only-icon">@Html.Raw(settings["Search Icon"])<span class="dropdn-link-txt">Search</span></a>
 									<div class="dropdn-content">
 										<div class="container">
 											<form method="get" action="#" class="search search-off-popular">
@@ -64,7 +64,7 @@
 							<!-- Header Wishlist -->
 							<div class="dropdn dropdn_wishlist">
 								<a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link ">
-									<i class="icon-heart"></i><span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">3</span>
+								@Html.Raw(settings["Heart Icon"])<span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">3</span>
 								</a>
 							</div>
 							<!-- /Header Wishlist -->
@@ -75,7 +75,7 @@
 							<!-- /Header Account -->
 							<div class="dropdn dropdn_fullheight minicart">
 								<a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon" data-panel="#dropdnMinicart">
-									<i class="icon-basket"></i>
+									@Html.Raw(settings["Basket Icon"])
 									<span class="minicart-qty">3</span>
 									<span class="minicart-total hide-mobile">$34.99</span>
 								</a>
@@ -94,22 +94,22 @@
 							<div class="hdr-line-separate">
 								<ul class="social-list list-unstyled">
 									<li>
-										<a href="#"><i class="icon-facebook"></i></a>
+										<a href="#">@Html.Raw(settings["Fb Icon"])</a>
 									</li>
 									<li>
-										<a href="#"><i class="icon-twitter"></i></a>
+										<a href="#">@Html.Raw(settings["Twitter Icon"])</a>
 									</li>
 									<li>
-										<a href="#"><i class="icon-google"></i></a>
+										<a href="#">@Html.Raw(settings["Google Icon"])</a>
 									</li>
 									<li>
-										<a href="#"><i class="icon-instagram"></i></a>
+										<a href="#">@Html.Raw(settings["Instagram Icon"])</a>
 									</li>
 									<li>
-										<a href="#"><i class="icon-vimeo"></i></a>
+										<a href="#">@Html.Raw(settings["Vimeo Icon"])</a>
 									</li>
 									<li>
-										<a href="#"><i class="icon-linkedin"></i></a>
+										<a href="#">@Html.Raw(settings["Linkedin Icon"])</a>
 									</li>
 								</ul>
 							</div>
@@ -158,7 +158,7 @@
 								<div class="hdr_container_desktop">
 									<!-- Header Account -->
 									<div class="dropdn dropdn_account dropdn_fullheight">
-										<a href="#" class="dropdn-link js-dropdn-link" data-panel="#dropdnAccount"><i class="icon-user"></i><span class="dropdn-link-txt">Account</span></a>
+										<a href="#" class="dropdn-link js-dropdn-link" data-panel="#dropdnAccount">@Html.Raw(settings["User Icon"])<span class="dropdn-link-txt">Account</span></a>
 									</div>
 									<!-- /Header Account -->
 								</div>
@@ -203,7 +203,7 @@
 								<!-- Header Search -->
 								<div class="search_container_desktop">
 									<div class="dropdn dropdn_search dropdn_fullwidth">
-										<a href="#" class="dropdn-link  js-dropdn-link only-icon"><i class="icon-search"></i><span class="dropdn-link-txt">Search</span></a>
+										<a href="#" class="dropdn-link  js-dropdn-link only-icon">@Html.Raw(settings["User Icon"])<span class="dropdn-link-txt">Search</span></a>
 										<div class="dropdn-content">
 											<div class="container">
 												<form method="get" action="#" class="search search-off-popular">
@@ -219,20 +219,20 @@
 								<!-- Header Wishlist -->
 								<div class="dropdn dropdn_wishlist">
 									<a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link ">
-										<i class="icon-heart"></i><span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">3</span>
+										@Html.Raw(settings["Heart Icon"])<span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">3</span>
 									</a>
 								</div>
 								<!-- /Header Wishlist -->
 								<div class="hdr_container_mobile show-mobile">
 									<!-- Header Account -->
 									<div class="dropdn dropdn_account dropdn_fullheight">
-										<a href="#" class="dropdn-link js-dropdn-link" data-panel="#dropdnAccount"><i class="icon-user"></i><span class="dropdn-link-txt">Account</span></a>
+										<a href="#" class="dropdn-link js-dropdn-link" data-panel="#dropdnAccount">	@Html.Raw(settings["User Icon"])<span class="dropdn-link-txt">Account</span></a>
 									</div>
 									<!-- /Header Account -->
 								</div>
 								<div class="dropdn dropdn_fullheight minicart">
 									<a href="#" class="dropdn-link js-dropdn-link minicart-link" data-panel="#dropdnMinicart">
-										<i class="icon-basket"></i>
+										@Html.Raw(settings["Basket Icon"])
 										<span class="minicart-qty">3</span>
 										<span class="minicart-total hide-mobile">$34.99</span>
 									</a>
@@ -464,7 +464,7 @@
 					@if (User.Identity.IsAuthenticated)
 					{
 						<li><span class="dropdown-item">@User.Identity.Name</span> </li>
-						<li><a asp-controller="Account" asp-action=""><span>My Account</span></a></li>
+						<li><a asp-controller="Account" asp-action="MyAccount"><span>My Account</span></a></li>
 						@if (User.IsInRole(Roles.Admin.ToString()))
 						{
 							<li>
@@ -588,29 +588,29 @@
 						<div class="text-icn-blocks-bg-row">
 							<div class="text-icn-block-footer">
 								<div class="icn">
-									<i class="icon-trolley"></i>
+								@Html.Raw(settings["Extra fast delivery Icon"])
 								</div>
 								<div class="text">
 									<h4>Extra fast delivery</h4>
-									<p>Your order will be delivered 3-5 business days after all of your items are available</p>
+									<p>@settings["Extra fast delivery"]</p>
 								</div>
 							</div>
 							<div class="text-icn-block-footer">
 								<div class="icn">
-									<i class="icon-currency"></i>
+									@Html.Raw(settings["Best price Icon"])
 								</div>
 								<div class="text">
 									<h4>Best price</h4>
-									<p>We'll match the product prices of key online and local competitors for immediately</p>
+									<p>@settings["Best price"]</p>
 								</div>
 							</div>
 							<div class="text-icn-block-footer">
 								<div class="icn">
-									<i class="icon-diplom"></i>
+									@Html.Raw(settings["Guarantee Icon"])
 								</div>
 								<div class="text">
 									<h4>Guarantee</h4>
-									<p>If the item you want is available, we can process a return and place a new order</p>
+									<p>@settings["Guarantee"]</p>
 								</div>
 							</div>
 						</div>
@@ -623,32 +623,37 @@
 						<div class="col-lg col-xl last-mobile">
 							<div class="footer-block">
 								<div class="footer-logo">
-									<a href="index.html"><img class="lazyload fade-up" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-srcset="~/assets/logo-footer.png 1x, ~/assets/logo-footer2x.png 2x" alt="Logo"></a>
+							   	<a asp-controller="Home" asp-action="Index" class="logo"><img style="width:100px; height:50px" src="~/assets/images/skins/fashion/settingImage/@settings["Logo"]" alt="Logo"></a>
 								</div>
 								<div class="collapsed-content">
 									<ul>
-										<li>E-mail: <a href="mailto:Foxshop@gmail.com">Foxshop@gmail.com</a></li>
-										<li>Hours: 10:00 - 18:00, Mon - Fri</li>
+										<li>E-mail: <a href="mailto:Foxshop@gmail.com">@settings["Email"]</a></li>
+										<li>@settings["Hours Footer"]</li>
 									</ul>
 								</div>
 								<ul class="social-list">
 									<li>
-										<a href="#" class="icon icon-facebook"></a>
+										@Html.Raw(settings["Fb Icon"])
 									</li>
 									<li>
-										<a href="#" class="icon icon-twitter"></a>
+										@Html.Raw(settings["Twitter Icon"])
+
 									</li>
 									<li>
-										<a href="#" class="icon icon-google"></a>
+										@Html.Raw(settings["Google Icon"])
+										
 									</li>
 									<li>
-										<a href="#" class="icon icon-vimeo"></a>
+										@Html.Raw(settings["Vimeo Icon"])
+										
 									</li>
 									<li>
-										<a href="#" class="icon icon-youtube"></a>
+										@Html.Raw(settings["Youtube Icon"])
+										
 									</li>
 									<li>
-										<a href="#" class="icon icon-pinterest"></a>
+										@Html.Raw(settings["Pinterest Icon"])
+										
 									</li>
 								</ul>
 								<div class="d-lg-none mt-3">
@@ -701,9 +706,9 @@
 								</div>
 								<div class="collapsed-content">
 									<ul class="payment-link">
-										<li><i class="icon-google-pay-logo"></i></li>
-										<li><i class="icon-visa-pay-logo"></i></li>
-										<li><i class="icon-apple-pay-logo"></i></li>
+										<li>@Html.Raw(settings["Google Pay Icon"])</li>
+										<li>@Html.Raw(settings["Visa Pay Icon"])</li>
+										<li>@Html.Raw(settings["Apple Pay Icon"])</li>
 									</ul>
 								</div>
 								<div class="d-none d-lg-block">

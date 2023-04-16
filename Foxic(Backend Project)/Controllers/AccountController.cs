@@ -3,6 +3,7 @@ using Foxic_Backend_Project_.Utilites.Roles;
 using Foxic_Backend_Project_.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Foxic_Backend_Project_.Controllers
@@ -87,11 +88,59 @@ namespace Foxic_Backend_Project_.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		//public async Task CreateRoles()
-		//{
-		//	await _roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
-		//	await _roleManager.CreateAsync(new IdentityRole(Roles.Moderator.ToString()));
-		//	await _roleManager.CreateAsync(new IdentityRole(Roles.Member.ToString()));
-		//}
-	}
-}
+		public async Task<ActionResult> MyAccount()
+		{
+			User user = await _userManager.FindByNameAsync(User.Identity.Name);
+			if (user is null)
+			{
+				return RedirectToAction(nameof(Login));
+			}
+			UserVM userVM = new()
+			{
+				Email = user.Email,
+				Username = user.UserName,
+				Fullname = user.Fullname
+			};
+
+			return View(userVM);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> MyAccount(UserVM editedUserVM)
+		{
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
+            if (user is null)
+            {
+                return RedirectToAction(nameof(Login));
+            }
+			user.Email = editedUserVM.Email;
+		    user.UserName = editedUserVM.Username;
+			user.Fullname = editedUserVM.Fullname;
+            var result = await _userManager.UpdateAsync(user);
+			
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(MyAccount));
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+
+                return View(editedUserVM);
+            }
+        }
+
+    }
+
+        //public async Task CreateRoles()
+        //{
+        //	await _roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
+        //	await _roleManager.CreateAsync(new IdentityRole(Roles.Moderator.ToString()));
+        //	await _roleManager.CreateAsync(new IdentityRole(Roles.Member.ToString()));
+        //}
+    }
+

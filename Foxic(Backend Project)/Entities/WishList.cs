@@ -2,7 +2,8 @@
 {
 	public class WishList:BaseEntity
 	{
-		public User user { get; set; }
+        public string Name { get; set; }
+        public User user { get; set; }
 		public ICollection<WishListItem> WishListItems { get; set; } = null!;
 
 		public WishList()
