@@ -44,26 +44,19 @@
 	<div class="prd-block_main-image-holder" id="prdMainImage">
 		<div class="product-main-carousel js-product-main-carousel" data-zoom-position="inner">
 			<div data-value="Beige"><span class="prd-img"><img src="~/assets/images/skins/fashion/products/@Model.ProductImages.FirstOrDefault(pi=>pi.IsMain==true)?.Path" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-01.jpg"/></span></div>
-			<div data-value="Beige"><span class="prd-img"><img src="~/assets/images/skins/fashion/products/@Model.ProductImages.FirstOrDefault(pi=>pi.IsMain==true)?.Path" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-02.jpg"/></span></div>
-			<div class="inner-video js-inner-video">
-				<video preload="metadata" controls="controls" playsinline="playsinline">
-					<source src="images/skins/fashion/product-page/product-video.mp4" type="video/mp4">
-				</video>
-			</div>
-			<div data-value="Beige"><span class="prd-img"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/product-page/product-03.jpg" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-03.jpg"/></span></div>
-			<div data-value="Black"><span class="prd-img"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/product-page/product-04.jpg" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-04.jpg"/></span></div>
-			<div data-value="Black"><span class="prd-img"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/product-page/product-05.jpg" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-05.jpg"/></span></div>
-			<div data-value="Black"><span class="prd-img"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/product-page/product-06.jpg" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-06.jpg"/></span></div>
-			<div data-value="Red"><span class="prd-img"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/product-page/product-07.jpg" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-07.jpg"/></span></div>
-			<div data-value="Red"><span class="prd-img"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/product-page/product-08.jpg" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-08.jpg"/></span></div>
-			<div data-value="Red"><span class="prd-img"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/skins/fashion/product-page/product-09.jpg" class="lazyload fade-up elzoom" alt="" data-zoom-image="images/skins/fashion/product-page/product-09.jpg"/></span></div>
+		@foreach(var falseImages in Model.ProductImages)
+		{
+
+		
+			<div data-value=""><span class="prd-img"><img src="~/assets/images/skins/fashion/products/@Model.ProductImages.FirstOrDefault(pi=>pi.IsMain==false)?.Path" class="lazyload fade-up elzoom" alt="" /></span></div>
+		}
+		
+		
+
 		</div>
 		<div class="prd-block_label-sale-squared justify-content-center align-items-center"><span>Sale</span></div>
 	</div>
-	<div class="prd-block_main-image-links">
-		<a data-fancybox data-width="900" href="https://www.youtube.com/watch?v=Zk3kr7J_v3Q" class="prd-block_video-link"><i class="icon-video"></i></a>
-		<a href="images/products//product-01.jpg" class="prd-block_zoom-link"><i class="icon-zoom-in"></i></a>
-	</div>
+	
 </div>
 <div class="product-previews-wrapper">
 	<div class="product-previews-carousel js-product-previews-carousel">
@@ -149,7 +142,7 @@
 			<p class="prd-taxes">Tax Info:
 				<span>Tax included.</span>
 			</p>
-			<p>Collection: <span> <a href="collections.html" data-toggle="tooltip" data-placement="top" data-original-title="View all">Women</a></span></p>
+			<p>Collection: <span> <a href="collections.html" data-toggle="tooltip" data-placement="top" data-original-title="View all">@Model.Collection.Name</a></span></p>
 			<p>Sku: <span data-sku="">FOXic-45812</span></p>
 			<p>Vendor: <span>Banita</span></p>
 			<p>Barcode: <span>314363563</span></p></div>
@@ -160,15 +153,18 @@
 				<div class="prd-color swatches">
 					<div class="option-label">Color:</div>
 					<select class="form-control hidden single-option-selector-modalQuickView" id="SingleOptionSelector-0" data-index="option1">
-						<option value="Beige" selected="selected">Beige</option>
-						<option value="Black">Black</option>
-						<option value="Red">Red</option>
+								@foreach(var colorimage in Model.ProductSizeColors)
+						{
+
+						<option value="@colorimage.Color.ColorImagePath" selected="selected">@colorimage.Color.ColorImagePath</option>
+						}
+					
 					</select>
 					<ul class="images-list js-size-list" data-select-id="SingleOptionSelector-0">
 								@foreach(var colorimage in Model.ProductSizeColors)
 				{
 						<li data-image="~/assets/images/skins/fashion/products/69e3cb46-6bab-456d-b738-f190443af9d9.webp" class="active">
-							<a href="/../assets/#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="Color Name">
+							<a href="/../assets/#" class="js-color-toggle" data-toggle="tooltip" data-placement="right" title="@colorimage.Color">
 								<img src="~/assets/images/skins/fashion/color/@colorimage.Color.ColorImagePath" class="lazyload fade-up" alt="Color Name">
 							</a>
 						</li>
@@ -179,14 +175,18 @@
 				<div class="prd-size swatches">
 					<div class="option-label">Size:</div>
 					<select class="form-control hidden single-option-selector-modalQuickView" id="SingleOptionSelector-1" data-index="option2">
-						<option value="Small" selected="selected">Small</option>
-						<option value="Medium">Medium</option>
-						<option value="Large">Large</option>
+						@foreach(var size in Model.ProductSizeColors)
+						{
+						<option value="Small" selected="selected">@size.Size.Name</option>
+
+						}
 					</select>
 					<ul class="size-list js-size-list" data-select-id="SingleOptionSelector-1">
-						<li class="active"><a href="#" data-value="Small"><span class="value">Small</span></a></li>
-						<li><a href="#" data-value="Medium"><span class="value">Medium</span></a></li>
-						<li><a href="#" data-value="Large"><span class="value">Large</span></a></li>
+					@foreach(var size2 in Model.ProductSizeColors)
+					{
+												<li class="active"><a href="#" data-value="@size2.Size.Name"><span class="value">@size2.Size.Name</span></a></li>
+
+					}
 					</ul>
 				</div>
 			</div>
@@ -362,37 +362,13 @@
 	<div role="tabpanel" class="tab-pane fade" id="Tab1">
 		<h4 class="mb-15">Give you a complete account of the system</h4>
 		<div class="row">
-			<div class="col-18 mb-2"><p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure.</p></div>
-			<div class="col-md-12">
-				<p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. Nor again is there anyone who loves or pursues.</p>
-				<div class="mt-2"></div>
-				<h4>List heading</h4>
-				<div class="row">
-					<div class="col-sm-9">
-						<ul class="list-unstyled list-smaller">
-							<li>1. All this mistaken idea of denouncing pleasure</li>
-							<li>2. Raising pain was born and I will give you</li>
-							<li>3. Complete account of the system</li>
-						</ul>
-					</div>
-					<div class="col-sm-9 mt-15 mt-sm-0">
-						<ul class="list-unstyled list-smaller">
-							<li>4. All this mistaken idea of denouncing pleasure</li>
-							<li>5. Raising pain was born and I will give you</li>
-							<li>6. Complete account of the system</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/product-description-02.png" alt="" class="lazyload"></div>
+			<div class="col-18 mb-2">
+				<p>@Model.LongDesc</p>
+</div>
+			
+			<div class="col-md-6"><img src="~/assets/images/skins/fashion/products/@Model.ProductImages.FirstOrDefault(pi=>pi.IsMain==true)?.Path" alt="" class="lazyload"></div>
 		</div>
-		<div class="row mt-2 align-items-center">
-			<div class="col-md-6"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="images/product-description-01.png" alt="" class="lazyload"></div>
-			<div class="col-md-12">
-				<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. </p>
-				<p>Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure</p>
-			</div>
-		</div>
+
 	</div>
 	<div role="tabpanel" class="tab-pane fade" id="Tab2">
 		<h3>Single Size Conversion</h3>
@@ -466,117 +442,54 @@
 	</div>
 
 	<div role="tabpanel" class="tab-pane fade" id="Tab3">
-		<h3>Take a trivial example which of us ever undertakes</h3>
 		<p>@Model.GlobalTabs.Text</p>
-		<ul class="list-marker">
-			<li>Nam liberempore</li>
-			<li>Cumsoluta nobisest</li>
-			<li>Eligendptio cumque</li>
-			<li>Nam liberempore</li>
-			<li>Cumsoluta nobisest</li>
-		</ul>
+			
 	</div>
 	<div role="tabpanel" class="tab-pane fade" id="Tab4">
 		<ul class="tags-list">
-			<li><a href="#">Jeans</a></li>
-			<li><a href="#">St.Valentine’s gift</a></li>
-			<li><a href="#">Sunglasses</a></li>
-			<li><a href="#">Discount</a></li>
-			<li><a href="#">Maxi dress</a></li>
-			<li><a href="#">Underwear</a></li>
-			<li><a href="#">men accessories</a></li>
-			<li><a href="#">hand bags</a></li>
-			<li><a href="#">Jeans</a></li>
-			<li><a href="#">St.Valentine’s gift</a></li>
-			<li><a href="#">Sunglasses</a></li>
-			<li><a href="#">Discount</a></li>
-			<li><a href="#">Maxi dress</a></li>
-			<li><a href="#">Underwear</a></li>
-			<li><a href="#">men accessories</a></li>
-			<li><a href="#">hand bags</a></li>
-			<li><a href="#">Discount</a></li>
-			<li><a href="#">Jeans</a></li>
+			@foreach(var tag in Model.ProductTags)
+			{
+							<li><a href="#">@tag.Tag.Name</a></li>
+
+			}
 		</ul>
-		<h3>Add your tag</h3>
-		<form class="form--simple" action="#">
-			<label>Tag<span class="required">*</span></label>
-			<input class="form-control form-control--sm">
-			<button class="btn btn--md">Submit Tag</button>
-			<div class="required-text">* Required Fields</div>
-		</form>
+		
 	</div>
 	<div role="tabpanel" class="tab-pane fade" id="Tab5">
 		<div id="productReviews">
 			<div class="row align-items-center">
 	<div class="col"><h2>CUSTOMER REVIEWS</h2></div>
-	<div class="col-18 col-md-auto mb-3 mb-md-0"><a href="#" class="review-write-link"><i class="icon-pencil"></i>Write review</a></div>
-</div>
-<div id="productReviewsBottom">
+ <form asp-action="AddComment" method="post" asp-route-id="@Model.Id">
+								<input type="text" class="form-control" placeholder="comment" asp-for="ProductComments.FirstOrDefault(cm => cm.Product.Id == Model.Id).Text" />
+                        <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </div>
+  <div id="productReviewsBottom">
+	    @foreach(var comment in Model.ProductComments)
+	  {
 	<div class="review-item">
 		<div class="review-item_rating">
 			<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
 		</div>
 		<div class="review-item_top row align-items-center">
-			<div class="col"><h5 class="review-item_author">Jaden Ngo on May 25, 2018</h5></div>
+			<div class="col"><h5 class="review-item_author">@comment.User.Fullname on @comment.CreationTime</h5></div>
 			<div class="col-auto"><a href="#" class="review-item_report">Report as Inappropriate</a></div>
 		</div>
 		<div class="review-item_content">
 			<h4>Good ball and company</h4>
-			<p>I recently bought this ball and this is the first ball that I actually buy based on quality and material, I always been playing my friend ball and one of them recommended me this, read some review online and decided to buy it, the ball feel sticky at first but quality is nice and the hand wrote letter was awesome because it shows how much season creator actually care about their customers.</p>
+			<p>@comment.Text</p>
 		</div>
+									<form asp-controller="Shop" asp-action="EditAddcomment" asp-route-commentId="@comment.Id" method="post">
+							<div class="row mt-2">
+											
+												<input type="text" class="form-control" placeholder="comment" asp-for="ProductComments.FirstOrDefault(cm => cm.Product.Id == Model.Id).Text" />
+												<button type="submit" class="btn btn-success">Edit</button>
+										
+								</div>
+		                       </form>
 	</div>
-	<div class="review-item">
-		<div class="review-item_rating">
-			<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-		</div>
-		<div class="review-item_top row align-items-center">
-			<div class="col"><h5 class="review-item_author">Jaden Ngo on May 25, 2018</h5></div>
-			<div class="col-auto"><a href="#" class="review-item_report">Report as Inappropriate</a></div>
-		</div>
-		<div class="review-item_content">
-			<h4>Good ball and company</h4>
-			<p>I recently bought this ball and this is the first ball that I actually buy based on quality and material, I always been playing my friend ball and one of them recommended me this, read some review online and decided to buy it, the ball feel sticky at first but quality is nice and the hand wrote letter was awesome because it shows how much season creator actually care about their customers.</p>
-		</div>
-	</div>
-	<div class="review-item">
-		<div class="review-item_rating">
-			<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-		</div>
-		<div class="review-item_top row align-items-center">
-			<div class="col"><h5 class="review-item_author">Jaden Ngo on May 25, 2018</h5></div>
-			<div class="col-auto"><a href="#" class="review-item_report">Report as Inappropriate</a></div>
-		</div>
-		<div class="review-item_content">
-			<h4>Good ball and company</h4>
-			<p>I recently bought this ball and this is the first ball that I actually buy based on quality and material, I always been playing my friend ball and one of them recommended me this, read some review online and decided to buy it, the ball feel sticky at first but quality is nice and the hand wrote letter was awesome because it shows how much season creator actually care about their customers.</p>
-		</div>
-	</div>
-	<div class="review-item">
-		<div class="review-item_rating">
-			<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-		</div>
-		<div class="review-item_top row align-items-center">
-			<div class="col"><h5 class="review-item_author">Jaden Ngo on May 25, 2018</h5></div>
-			<div class="col-auto"><a href="#" class="review-item_report">Report as Inappropriate</a></div>
-		</div>
-		<div class="review-item_content">
-			<h4>Good ball and company</h4>
-			<p>I recently bought this ball and this is the first ball that I actually buy based on quality and material, I always been playing my friend ball and one of them recommended me this, read some review online and decided to buy it, the ball feel sticky at first but quality is nice and the hand wrote letter was awesome because it shows how much season creator actually care about their customers.</p>
-		</div>
-	</div>
-	<div class="review-item">
-		<div class="review-item_rating">
-			<i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i><i class="icon-star-fill fill"></i>
-		</div>
-		<div class="review-item_top row align-items-center">
-			<div class="col"><h5 class="review-item_author">Jaden Ngo on May 25, 2018</h5></div>
-			<div class="col-auto"><a href="#" class="review-item_report">Report as Inappropriate</a></div>
-		</div>
-		<div class="review-item_content">
-			<h4>Good ball and company</h4>
-			<p>I recently bought this ball and this is the first ball that I actually buy based on quality and material, I always been playing my friend ball and one of them recommended me this, read some review online and decided to buy it, the ball feel sticky at first but quality is nice and the hand wrote letter was awesome because it shows how much season creator actually care about their customers.</p>
-		</div>
-	</div>
+	  }
+	
 </div>
 		</div>
 	</div>

@@ -22,14 +22,19 @@ namespace Foxic_Backend_Project_.Entities
 		public List<ProductTag> ProductTags { get; set; }
 		public List<ProductImage> ProductImages { get; set; }
 		public List<ProductSizeColor> ProductSizeColors { get; set; }
-		
 
-		public Product()
+        public List<Comment>? ProductComments { get; set; }
+
+
+
+        public Product()
 		{
 			ProductCategories = new();
 			ProductTags = new();
 			ProductImages = new();
 			ProductSizeColors = new();
-		}
+			ProductComments = new();
+
+        }
 	}
 }

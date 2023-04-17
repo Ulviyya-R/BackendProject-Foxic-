@@ -30,7 +30,11 @@ namespace Foxic_Backend_Project_.Controllers
 		public async Task<IActionResult> Register(RegisterVM registeraccount)
 		{
 			if (!ModelState.IsValid) return View();
-			if (!registeraccount.Terms) return View();
+			if (!registeraccount.Terms)
+			{
+                ModelState.AddModelError("Terms", "Please click Terms button");
+                return View();
+            }
 			User user = new User
 			{
 				UserName = registeraccount.Username,
@@ -69,7 +73,7 @@ namespace Foxic_Backend_Project_.Controllers
 				return View();
 			}
 			SignInResult result = await _signInManager.PasswordSignInAsync(user, login.Password, login.RememberMe, true);
-			if (result.Succeeded)
+			if (!result.Succeeded)
 			{
 				if (result.IsLockedOut)
 				{
@@ -132,6 +136,8 @@ namespace Foxic_Backend_Project_.Controllers
 
                 return View(editedUserVM);
             }
+			await _signInManager.SignOutAsync();
+			return RedirectToAction(nameof(Login));
         }
 
     }

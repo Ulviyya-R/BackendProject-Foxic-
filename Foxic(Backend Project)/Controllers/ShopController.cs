@@ -1,8 +1,10 @@
 ﻿using Foxic_Backend_Project_.DAL;
 using Foxic_Backend_Project_.Entities;
 using Foxic_Backend_Project_.Utilites;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 using System.Numerics;
 
 namespace Foxic_Backend_Project_.Controllers
@@ -10,10 +12,12 @@ namespace Foxic_Backend_Project_.Controllers
 	public class ShopController:Controller
 	{
 		private readonly FoxicDbContext _context;
+		private readonly UserManager<User> _userManager;
 
-		public ShopController(FoxicDbContext context)
+		public ShopController(FoxicDbContext context,UserManager<User> userManager)
 		{
 			_context = context;
+			_userManager = userManager;
 		}
 
 		public IActionResult Index()
@@ -70,7 +74,8 @@ namespace Foxic_Backend_Project_.Controllers
 			IQueryable<Product> products = _context.Products.AsNoTracking().AsQueryable();
 			Product? product = products.Include(p=>p.ProductSizeColors).ThenInclude(psc=>psc.Color)
 				                       .Include(p => p.ProductSizeColors).ThenInclude(psc => psc.Size)
-									   .Include(p=>p.Collection)
+                                       .Include(p => p.ProductComments).ThenInclude(cu => cu.User)
+                                       .Include(p=>p.Collection)
 										.Include(p=>p.GlobalTabs)
 				                         .Include(p => p.ProductImages)
 										 .Include(p=>p.ProductCategories).ThenInclude(pc=>pc.Category)
@@ -83,5 +88,59 @@ namespace Foxic_Backend_Project_.Controllers
 			return View(product);
 		}
 
-	}
+        [HttpPost]
+
+        public async Task<IActionResult> AddComment(Comment comment, int id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+			}
+			else
+			{
+                Product? product = await _context.Products.Include(p => p.ProductComments).FirstOrDefaultAsync(p => p.Id == id);
+                User user = await _userManager.FindByNameAsync(User.Identity.Name);
+                Comment newComment = new Comment()
+                {
+                    Text = comment.Text,
+                    User = user,
+                    CreationTime = DateTime.UtcNow,
+                    Product = product
+
+                };
+                user.Comments.Add(newComment);
+                product.ProductComments.Add(newComment);
+                await _context.Comments.AddAsync(newComment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Detail), new { id });
+            }
+        }
+		[HttpPost]
+        public async Task<IActionResult> EditAddcomment(int? commentId, Comment updatedComment)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+				var comment = await _context.Comments.FirstOrDefaultAsync(p => p.Id == commentId);
+
+
+                if (comment == null)
+                {
+                    return NotFound();
+                }
+
+                comment.Text = updatedComment.Text;
+                comment.CreationTime= DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+
+    }
 }

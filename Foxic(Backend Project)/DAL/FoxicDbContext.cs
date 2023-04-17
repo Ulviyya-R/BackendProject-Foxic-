@@ -27,6 +27,8 @@ namespace Foxic_Backend_Project_.DAL
 		public DbSet<Product> Products { get; set; }
         public DbSet<WishList> WishLists { get; set; }
         public DbSet<WishListItem> wishListItems { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
 
 
 

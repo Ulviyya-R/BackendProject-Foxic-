@@ -4,6 +4,7 @@ using Foxic_Backend_Project_.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foxic_Backend_Project_.Migrations
 {
     [DbContext(typeof(FoxicDbContext))]
-    partial class FoxicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230417084919_CreateCommentsTable")]
+    partial class CreateCommentsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,9 +184,6 @@ namespace Foxic_Backend_Project_.Migrations
                     b.Property<string>("ShortDesc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("commentId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
