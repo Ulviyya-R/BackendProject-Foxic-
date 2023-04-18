@@ -70,6 +70,7 @@ namespace Foxic_Backend_Project_.Controllers
 
 		public IActionResult Detail(int id)
 		{
+			AllViewBagsData();
 			if (id == 0) return NotFound();
 			IQueryable<Product> products = _context.Products.AsNoTracking().AsQueryable();
 			Product? product = products.Include(p=>p.ProductSizeColors).ThenInclude(psc=>psc.Color)
@@ -142,5 +143,21 @@ namespace Foxic_Backend_Project_.Controllers
         }
 
 
-    }
+
+		/// <summary>
+		/// I hid the viewbags I sent in actions here
+		/// </summary>
+		private void AllViewBagsData()
+		{
+			ViewBag.GlobalTabs = _context.GlobalTabs.AsEnumerable();
+			ViewBag.Collections = _context.Collections.AsEnumerable();
+			ViewBag.Categories = _context.Categories.AsEnumerable();
+			ViewBag.Tags = _context.Tags.AsEnumerable();
+			ViewBag.Sizes = _context.Sizes.AsEnumerable();
+			ViewBag.Colors = _context.Colors.AsEnumerable();
+		}
+
+
+
+	}
 }

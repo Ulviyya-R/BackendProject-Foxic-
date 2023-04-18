@@ -28,6 +28,18 @@ namespace Foxic_Backend_Project_.Controllers
 			return View(slider);
         }
 
+
+        public IActionResult Search(string search)
+        {
+            var query = _context.Products.Include(p => p.ProductImages)
+                                          .AsQueryable()
+                                          .Where(p => p.Name.Contains(search));
+            List<Product> products = query.OrderByDescending(p => p.Id).ToList();
+
+            return PartialView("_ProductPartial",products);
+                                       
+        }
+
      
     }
 }

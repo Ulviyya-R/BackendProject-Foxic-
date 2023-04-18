@@ -3,6 +3,7 @@
 	public class Basket:BaseEntity
 	{
 		public decimal TotalPrice { get; set; }
+		public Order Order { get; set; }
 		public User User { get; set; }
 
 		public bool IsOrdered { get; set; } = false;

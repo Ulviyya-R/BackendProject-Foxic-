@@ -22,6 +22,30 @@ namespace Foxic_Backend_Project_.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Foxic_Backend_Project_.Entities.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsOrdered")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Baskets");
+                });
+
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.BasketItem", b =>
                 {
                     b.Property<int>("Id")
@@ -29,6 +53,9 @@ namespace Foxic_Backend_Project_.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ProductSizeColorId")
                         .HasColumnType("int");
@@ -41,9 +68,11 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BasketId");
+
                     b.HasIndex("ProductSizeColorId");
 
-                    b.ToTable("BasketItem");
+                    b.ToTable("BasketItems");
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Category", b =>
@@ -148,6 +177,45 @@ namespace Foxic_Backend_Project_.Migrations
                     b.ToTable("GlobalTabs");
                 });
 
+            modelBuilder.Entity("Foxic_Backend_Project_.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DeliveredDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Fullname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RequiredDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("totalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId")
+                        .IsUnique();
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -160,7 +228,7 @@ namespace Foxic_Backend_Project_.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("DiscountPrice")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("GlobalTabId")
                         .HasColumnType("int");
@@ -177,14 +245,11 @@ namespace Foxic_Backend_Project_.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ShortDesc")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("commentId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -451,29 +516,6 @@ namespace Foxic_Backend_Project_.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Foxic_Backend_Project_.Entities.WishList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("userId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("WishLists");
-                });
-
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.WishListItem", b =>
                 {
                     b.Property<int>("Id")
@@ -482,40 +524,23 @@ namespace Foxic_Backend_Project_.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Desc")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImgUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProductSizeColorId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("WishListId1")
-                        .HasColumnType("int");
-
-                    b.Property<string>("userId")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("WishListQuantity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductSizeColorId");
+                    b.HasIndex("ProductId");
 
-                    b.HasIndex("WishListId1");
+                    b.HasIndex("UserId");
 
-                    b.HasIndex("userId");
-
-                    b.ToTable("wishListItems");
+                    b.ToTable("WishListItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -651,13 +676,30 @@ namespace Foxic_Backend_Project_.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Foxic_Backend_Project_.Entities.Basket", b =>
+                {
+                    b.HasOne("Foxic_Backend_Project_.Entities.User", "User")
+                        .WithMany("Baskets")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.BasketItem", b =>
                 {
+                    b.HasOne("Foxic_Backend_Project_.Entities.Basket", "Basket")
+                        .WithMany("BasketItems")
+                        .HasForeignKey("BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Foxic_Backend_Project_.Entities.ProductSizeColor", "ProductSizeColor")
                         .WithMany("BasketItems")
                         .HasForeignKey("ProductSizeColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Basket");
 
                     b.Navigation("ProductSizeColor");
                 });
@@ -677,6 +719,17 @@ namespace Foxic_Backend_Project_.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Foxic_Backend_Project_.Entities.Order", b =>
+                {
+                    b.HasOne("Foxic_Backend_Project_.Entities.Basket", "Basket")
+                        .WithOne("Order")
+                        .HasForeignKey("Foxic_Backend_Project_.Entities.Order", "BasketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Basket");
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Product", b =>
@@ -774,40 +827,23 @@ namespace Foxic_Backend_Project_.Migrations
                     b.Navigation("Tag");
                 });
 
-            modelBuilder.Entity("Foxic_Backend_Project_.Entities.WishList", b =>
-                {
-                    b.HasOne("Foxic_Backend_Project_.Entities.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("user");
-                });
-
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.WishListItem", b =>
                 {
-                    b.HasOne("Foxic_Backend_Project_.Entities.ProductSizeColor", "ProductSizeColor")
+                    b.HasOne("Foxic_Backend_Project_.Entities.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductSizeColorId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Foxic_Backend_Project_.Entities.WishList", "WishList")
+                    b.HasOne("Foxic_Backend_Project_.Entities.User", "User")
                         .WithMany("WishListItems")
-                        .HasForeignKey("WishListId1");
-
-                    b.HasOne("Foxic_Backend_Project_.Entities.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ProductSizeColor");
+                    b.Navigation("Product");
 
-                    b.Navigation("WishList");
-
-                    b.Navigation("user");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -861,6 +897,14 @@ namespace Foxic_Backend_Project_.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Foxic_Backend_Project_.Entities.Basket", b =>
+                {
+                    b.Navigation("BasketItems");
+
+                    b.Navigation("Order")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Category", b =>
                 {
                     b.Navigation("ProductCategories");
@@ -911,11 +955,10 @@ namespace Foxic_Backend_Project_.Migrations
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.User", b =>
                 {
-                    b.Navigation("Comments");
-                });
+                    b.Navigation("Baskets");
 
-            modelBuilder.Entity("Foxic_Backend_Project_.Entities.WishList", b =>
-                {
+                    b.Navigation("Comments");
+
                     b.Navigation("WishListItems");
                 });
 #pragma warning restore 612, 618

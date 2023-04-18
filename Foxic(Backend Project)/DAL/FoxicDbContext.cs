@@ -1,7 +1,6 @@
 ﻿using Foxic_Backend_Project_.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Foxic_Backend_Project_.ViewModels;
 
 namespace Foxic_Backend_Project_.DAL
 {
@@ -25,9 +24,13 @@ namespace Foxic_Backend_Project_.DAL
         public DbSet<Collection> Collections { get; set; }
 		
 		public DbSet<Product> Products { get; set; }
-        public DbSet<WishList> WishLists { get; set; }
-        public DbSet<WishListItem> wishListItems { get; set; }
+        public DbSet<WishListItem> WishListItems { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
+
 
 
 

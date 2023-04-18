@@ -1,0 +1,44 @@
+﻿@model List<WishListItem>
+
+<div class="page-content">
+	<div class="holder breadcrumbs-wrap mt-0">
+		<div class="container">
+			<ul class="breadcrumbs">
+				<li><a href="index.html">Home</a></li>
+				<li><span>My account</span></li>
+			</ul>
+		</div>
+	</div>
+	<div class="holder">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 aside aside--left">
+					<div class="list-group">
+						<a asp-controller="Account" asp-action="MyAccount" class="list-group-item">Account Details</a>
+						<a href="account-addresses.html" class="list-group-item">My Addresses</a>
+						<a asp-controller="Order" asp-action="Index" class="list-group-item active">My Wishlist</a>
+						<a href="account-history.html" class="list-group-item">My Order History</a>
+						<a href="#" class="list-group-item disabled">My Reviews</a>
+						<a href="#" class="list-group-item disabled">My Saved Tags</a>
+						<a href="#" class="list-group-item disabled">Compare Products</a>
+					</div>
+				</div>
+				<div class="col-md-14 aside">
+					<h1 class="mb-3">My Wishlist</h1>
+					<div class="empty-wishlist js-empty-wishlist text-center py-3 py-sm-5 d-none" style="opacity: 0;">
+						<h3>Your Wishlist is empty</h3>
+						<div class="mt-5">
+							<a href="index.html" class="btn">Continue shopping</a>
+						</div>
+					</div>
+					<div class="prd-grid-wrap position-relative">
+						<div class="prd-grid prd-grid--wishlist data-to-show-3 data-to-show-lg-3 data-to-show-md-2 data-to-show-sm-2 data-to-show-xs-1">
+							@await Html.PartialAsync("_WishlistPartial",Model)
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

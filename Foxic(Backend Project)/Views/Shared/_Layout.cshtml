@@ -1,7 +1,9 @@
 ﻿@using Foxic_Backend_Project_.Utilites.Roles
 @inject Foxic_Backend_Project_.Services.LayoutService layoutService
 @{
-    Dictionary<string, string> settings = layoutService.GetSettings();
+	Dictionary<string, string> settings = layoutService.GetSettings();
+	var BasketItemVM = layoutService.GetBasketItemVM();
+	var BasketItemm = layoutService.GetBasketItem();
 }
 
 <!DOCTYPE html>
@@ -63,9 +65,14 @@
 							<!-- /Header Search -->
 							<!-- Header Wishlist -->
 							<div class="dropdn dropdn_wishlist">
-								<a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link ">
-								@Html.Raw(settings["Heart Icon"])<span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">3</span>
-								</a>
+								<a asp-controller="Order" asp-action="Index"  class="dropdn-link only-icon wishlist-link ">
+								@Html.Raw(settings["Heart Icon"])<span class="dropdn-link-txt">Wishlist</span>
+							    @* @foreach(var item in WishListItemVM)
+								 {
+					               	Product? product = layoutService.GetProducts().FirstOrDefault(p=>p.Id == item.ProductId);
+									 <span class="wishlist-qty">@item.Quantity</span>
+								 }*@
+							</a>
 							</div>
 							<!-- /Header Wishlist -->
 							<!-- Header Account -->
@@ -76,8 +83,12 @@
 							<div class="dropdn dropdn_fullheight minicart">
 								<a href="#" class="dropdn-link js-dropdn-link minicart-link only-icon" data-panel="#dropdnMinicart">
 									@Html.Raw(settings["Basket Icon"])
-									<span class="minicart-qty">3</span>
-									<span class="minicart-total hide-mobile">$34.99</span>
+										@foreach(var item in BasketItemVM)
+					{
+						Product? product = layoutService.GetProducts().FirstOrDefault(p=>p.Id == item.ProductId);
+						BasketItem? basket = BasketItemm.FirstOrDefault(b=>b.ProductSizeColorId == item.ProductSizeColorId);
+									<span class="minicart-qty">@item.Quantity</span>
+					}
 								</a>
 							</div>
 						</div>
@@ -203,14 +214,30 @@
 								<!-- Header Search -->
 								<div class="search_container_desktop">
 									<div class="dropdn dropdn_search dropdn_fullwidth">
-										<a href="#" class="dropdn-link  js-dropdn-link only-icon">@Html.Raw(settings["User Icon"])<span class="dropdn-link-txt">Search</span></a>
+										<a href="#" class="dropdn-link  js-dropdn-link only-icon">@Html.Raw(settings["Search Icon"])<span class="dropdn-link-txt">Search</span></a>
 										<div class="dropdn-content">
 											<div class="container">
-												<form method="get" action="#" class="search search-off-popular">
-													<input name="search" type="text" class="search-input input-empty" placeholder="What are you looking for?">
+												<form method="post" action="#" class="search search-off-popular">
+													<input id="search" name="search" type="search" class="search-input input-empty" placeholder="What are you looking for?">
 													<button type="submit" class="search-button"><i class="icon-search"></i></button>
+													<ul class="list-group search-list">
+
+
+													</ul>
 													<a href="#" class="search-close js-dropdn-close"><i class="icon-close-thin"></i></a>
 												</form>
+												<script>
+													$('#search').keyup(function (){
+														let search = $(this).val();
+														$.ajax({
+															url: 'https://localhost:7284/Home/Search?search=>' + search,
+															method:'get',
+															success:function(resp){
+																$('.search-list').html(resp);
+															}
+														})
+													})
+													</script>
 											</div>
 										</div>
 									</div>
@@ -218,8 +245,13 @@
 								<!-- /Header Search -->
 								<!-- Header Wishlist -->
 								<div class="dropdn dropdn_wishlist">
-									<a href="account-wishlist.html" class="dropdn-link only-icon wishlist-link ">
-										@Html.Raw(settings["Heart Icon"])<span class="dropdn-link-txt">Wishlist</span><span class="wishlist-qty">3</span>
+									<a asp-controller="Order" asp-action="Index" class="dropdn-link only-icon wishlist-link ">
+										@Html.Raw(settings["Heart Icon"])<span class="dropdn-link-txt">Wishlist</span>
+								@*	  @foreach(var item in WishListItemVM)
+								 {
+					               	Product? product = layoutService.GetProducts().FirstOrDefault(p=>p.Id == item.ProductId);
+									 <span class="wishlist-qty">@item.Quantity</span>
+								 }*@
 									</a>
 								</div>
 								<!-- /Header Wishlist -->
@@ -233,8 +265,12 @@
 								<div class="dropdn dropdn_fullheight minicart">
 									<a href="#" class="dropdn-link js-dropdn-link minicart-link" data-panel="#dropdnMinicart">
 										@Html.Raw(settings["Basket Icon"])
-										<span class="minicart-qty">3</span>
-										<span class="minicart-total hide-mobile">$34.99</span>
+										@foreach (var item in BasketItemVM)
+										{
+											Product? product = layoutService.GetProducts().FirstOrDefault(p => p.Id == item.ProductId);
+											BasketItem? basket = BasketItemm.FirstOrDefault(b => b.ProductSizeColorId == item.ProductSizeColorId);
+											<span class="minicart-qty">@item.Quantity</span>
+										}
 									</a>
 								</div>
 							</div>
@@ -491,40 +527,33 @@
 			<div class="dropdn-content-block">
 				<div class="dropdn-close"><span class="js-dropdn-close">Close</span></div>
 				<div class="minicart-drop-content js-dropdn-content-scroll">
-					<div class="minicart-prd row">
-						<div class="minicart-prd-image image-hover-scale-circle col">
-							<a href="product.html"><img class="lazyload fade-up" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="~/assets/images/skins/fashion/products/product-01-1.jpg" alt=""></a>
-						</div>
-						<div class="minicart-prd-info col">
-							<div class="minicart-prd-tag">FOXic</div>
-							<h2 class="minicart-prd-name"><a href="#">Leather Pegged Pants</a></h2>
-							<div class="minicart-prd-qty"><span class="minicart-prd-qty-label">Quantity:</span><span class="minicart-prd-qty-value">1</span></div>
-							<div class="minicart-prd-price prd-price">
-								<div class="price-old">$200.00</div>
-								<div class="price-new">$180.00</div>
+					@foreach(var item in BasketItemVM)
+					{
+						Product? product = layoutService.GetProducts().FirstOrDefault(p=>p.Id == item.ProductId);
+						BasketItem? basket = BasketItemm.FirstOrDefault(b=>b.ProductSizeColorId == item.ProductSizeColorId);
+
+						if(product != null)
+						{
+						<div class="minicart-prd row">
+							<div class="minicart-prd-image image-hover-scale-circle col">
+								<a href="product.html"><img src="~/assets/images/skins/fashion/products/@product.ProductImages.FirstOrDefault(pi=>pi.IsMain==true).Path" alt=""></a>
+							</div>
+							<div class="minicart-prd-info col">
+								<div class="minicart-prd-tag">Ulka</div>
+								<h2 class="minicart-prd-name"><a href="#">@product.Name</a></h2>
+								<div class="minicart-prd-qty"><span class="minicart-prd-qty-label">Quantity:</span><span class="minicart-prd-qty-value">@item.Quantity</span></div>
+								<div class="minicart-prd-price prd-price">
+									<div class="price-old">$@product.DiscountPrice</div>
+									<div class="price-new">$@product.Price</div>
+								</div>
+							</div>
+							<div class="minicart-prd-action">
+								<a asp-controller="Order" asp-action="DeleteBasketItem" asp-route-id="@basket.Id"  data-line-number="1"><i class="icon-recycle"></i></a>
 							</div>
 						</div>
-						<div class="minicart-prd-action">
-							<a href="#" class="js-product-remove" data-line-number="1"><i class="icon-recycle"></i></a>
-						</div>
-					</div>
-					<div class="minicart-prd row">
-						<div class="minicart-prd-image image-hover-scale-circle col">
-							<a href="product.html"><img class="lazyload fade-up" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="~/assets/images/skins/fashion/products/product-16-1.jpg" alt=""></a>
-						</div>
-						<div class="minicart-prd-info col">
-							<div class="minicart-prd-tag">FOXic</div>
-							<h2 class="minicart-prd-name"><a href="#">Cascade Casual Shirt</a></h2>
-							<div class="minicart-prd-qty"><span class="minicart-prd-qty-label">Quantity:</span><span class="minicart-prd-qty-value">1</span></div>
-							<div class="minicart-prd-price prd-price">
-								<div class="price-old">$200.00</div>
-								<div class="price-new">$180.00</div>
-							</div>
-						</div>
-						<div class="minicart-prd-action">
-							<a href="#" class="js-product-remove" data-line-number="2"><i class="icon-recycle"></i></a>
-						</div>
-					</div>
+
+						}
+					}
 					<div class="minicart-empty js-minicart-empty d-none">
 						<div class="minicart-empty-text">Your cart is empty</div>
 						<div class="minicart-empty-icon">
@@ -557,7 +586,7 @@
 					<div class="loader-horizontal-sm js-loader-horizontal-sm" data-loader-horizontal=""><span></span></div>
 					<div class="minicart-drop-total js-minicart-drop-total row no-gutters align-items-center">
 						<div class="minicart-drop-total-txt col-auto heading-font">Subtotal</div>
-						<div class="minicart-drop-total-price col" data-header-cart-total="">$340</div>
+						<div class="minicart-drop-total-price col" data-header-cart-total="">$@BasketItemm.Sum(b=>b.UnitPrice*b.SaleQuantity)</div>
 					</div>
 					<div class="minicart-drop-actions">
 						<a href="cart.html" class="btn btn--md btn--grey"><i class="icon-basket"></i><span>Cart Page</span></a>

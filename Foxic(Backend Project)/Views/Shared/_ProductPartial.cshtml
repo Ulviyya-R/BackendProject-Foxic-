@@ -22,8 +22,8 @@
 					</div>
 				</a>
 				<div class="prd-circle-labels">
-					<a href="/../assets/#" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="/../assets/#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a>
-					<a href="/../assets/#" class="circle-label-qview js-prd-quickview prd-hide-mobile" data-src="/../assets/ajax/ajax-quickview.html"><i class="icon-eye"></i><span>QUICK VIEW</span></a>
+					<a asp-controller="Order" asp-action="AddWishList" asp-route-productId="@product.Id" class="circle-label-compare circle-label-wishlist--add " ><i class="icon-heart-stroke"></i></a><a href="/../assets/#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a>
+					<a  class="circle-label-qview" ><i class="icon-eye"></i><span>QUICK VIEW</span></a>
 
 				</div>
 

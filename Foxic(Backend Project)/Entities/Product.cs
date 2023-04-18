@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Foxic_Backend_Project_.ViewModels;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Foxic_Backend_Project_.Entities
@@ -6,9 +7,7 @@ namespace Foxic_Backend_Project_.Entities
 	public class Product:BaseEntity
 	{
 		public string Name { get; set; }
-		[Column(TypeName = "decimal(6,2)")]
 		public decimal Price { get; set; }
-		[Column(TypeName = "decimal(6,2)")]
 		public decimal? DiscountPrice { get; set; }
 		public string ShortDesc { get; set; }
 		public string LongDesc { get; set; }
@@ -24,6 +23,8 @@ namespace Foxic_Backend_Project_.Entities
 		public List<ProductSizeColor> ProductSizeColors { get; set; }
 
         public List<Comment>? ProductComments { get; set; }
+		[NotMapped]
+		public AddcartVM AddcartVM { get; set; }
 
 
 
