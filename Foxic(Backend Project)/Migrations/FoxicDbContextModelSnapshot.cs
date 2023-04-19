@@ -43,7 +43,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Baskets");
+                    b.ToTable("Baskets", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.BasketItem", b =>
@@ -72,7 +72,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("ProductSizeColorId");
 
-                    b.ToTable("BasketItems");
+                    b.ToTable("BasketItems", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Category", b =>
@@ -89,7 +89,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Collection", b =>
@@ -106,7 +106,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Collections");
+                    b.ToTable("Collections", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Color", b =>
@@ -127,7 +127,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("Colors", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Comment", b =>
@@ -157,7 +157,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.GlobalTab", b =>
@@ -174,7 +174,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GlobalTabs");
+                    b.ToTable("GlobalTabs", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Order", b =>
@@ -213,7 +213,7 @@ namespace Foxic_Backend_Project_.Migrations
                     b.HasIndex("BasketId")
                         .IsUnique();
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Product", b =>
@@ -257,7 +257,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("GlobalTabId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.ProductCategory", b =>
@@ -280,7 +280,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductCategory");
+                    b.ToTable("ProductCategory", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.ProductImage", b =>
@@ -305,7 +305,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImages");
+                    b.ToTable("ProductImages", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.ProductSizeColor", b =>
@@ -336,7 +336,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("SizeId");
 
-                    b.ToTable("ProductSizeColors");
+                    b.ToTable("ProductSizeColors", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.ProductTag", b =>
@@ -359,7 +359,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("ProductTag");
+                    b.ToTable("ProductTag", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Setting", b =>
@@ -382,7 +382,7 @@ namespace Foxic_Backend_Project_.Migrations
                     b.HasIndex("Key")
                         .IsUnique();
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Size", b =>
@@ -399,7 +399,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sizes");
+                    b.ToTable("Sizes", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Slider", b =>
@@ -427,7 +427,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders");
+                    b.ToTable("Sliders", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.Tag", b =>
@@ -444,7 +444,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Foxic_Backend_Project_.Entities.User", b =>
@@ -540,7 +540,7 @@ namespace Foxic_Backend_Project_.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("WishListItems");
+                    b.ToTable("WishListItems", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

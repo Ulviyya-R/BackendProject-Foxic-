@@ -1,7 +1,7 @@
 ﻿@model List<Product>
 
 @foreach(Product product in Model){
-	<div class="prd prd--style2 prd-labels--max prd-labels-shadow ">
+	<div class="prd prd--style2 prd-labels--max prd-labels-shadow  partialsort ">
 		<div class="prd-inside">
 			<div class="prd-img-area">
 				<a class="prd-img image-hover-scale image-container">
@@ -81,3 +81,21 @@
 	</div>
 
 }
+
+						<nav class="mt-3 d-flex justify-content-center" aria-label="...">
+	<ul class="pagination">
+		<li class="page-item  @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+			<a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage-1)" tabindex="-1">Previous</a>
+		</li>
+		@for (int i = 1; i <= ViewBag.TotalPage; i++)
+		{
+				<li class="page-item @(i==ViewBag.CurrentPage ? "active PointerNone" : "")">
+					<a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+				</li>
+		}
+
+		<li class="page-item @(ViewBag.TotalPage == ViewBag.CurrentPage ? "disabled" : "")">
+			<a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
+		</li>
+	</ul>
+</nav>

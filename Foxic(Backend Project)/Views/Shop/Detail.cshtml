@@ -435,14 +435,16 @@
 		<div id="productReviews">
 			<div class="row align-items-center">
 	<div class="col"><h2>CUSTOMER REVIEWS</h2></div>
+								</div>
 							@if (User.Identity.IsAuthenticated)
 							{
-								<form asp-action="AddComment" method="post" asp-route-id="@Model.Id">
-									<input type="text" class="form-control" placeholder="comment" asp-for="ProductComments.FirstOrDefault(cm => cm.Product.Id == Model.Id).Text" />
+								<form class="my-3" asp-action="AddComment" method="post" asp-route-id="@Model.Id">
+									<input style="" type="text" class="form-control" placeholder="comment" asp-for="ProductComments.FirstOrDefault(cm => cm.Product.Id == Model.Id).Text" />
 									<button type="submit" class="btn btn-success">Submit</button>
 								</form>
 							}
-								</div>
+
+
 								<div id="productReviewsBottom">
 									@foreach (var comment in Model.ProductComments)
 									{
@@ -458,17 +460,19 @@
 												<h4>Good ball and company</h4>
 												<p>@comment.Text</p>
 											</div>
-											<form asp-controller="Shop" asp-action="EditAddcomment" asp-route-commentId="@comment.Id" method="post">
+									
 												<div class="row mt-2">
 
-													<input type="text" class="form-control" placeholder="comment" asp-for="ProductComments.FirstOrDefault(cm => cm.Product.Id == Model.Id).Text" />
-													<button type="submit" class="btn btn-success">Edit</button>
+												<form method="post" asp-controller="Shop" asp-action="DeleteComment" asp-route-commentId="@comment.Id">
+                                              <div class="row mt-2">
+                                          <button type="submit" >Delete</button>
+                                             </div>
+                                                 </form>
 
 												</div>
-											</form>
+											
 										</div>
 									}
-
 								</div>
 								</div>
 						</div>

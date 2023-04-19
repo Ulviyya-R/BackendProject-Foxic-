@@ -43,7 +43,7 @@ namespace Foxic_Backend_Project_.Services
 		public List<BasketItemVM> GetBasketItemVM()
 		{
 			List<BasketItemVM> basketItemVMs = new List<BasketItemVM>();
-			User user = null;
+			User user = new();
 
 			if (_accessor.HttpContext.User.Identity.IsAuthenticated)
 			{

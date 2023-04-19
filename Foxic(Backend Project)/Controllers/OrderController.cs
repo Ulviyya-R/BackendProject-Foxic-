@@ -60,6 +60,7 @@ namespace Foxic_Backend_Project_.Controllers
 			}
 			else
 			{
+
 				return RedirectToAction("Login", "Account");
 			}
 
@@ -96,11 +97,16 @@ namespace Foxic_Backend_Project_.Controllers
                         ProductSizeColor = productsc
                 };
                 currentBasket.BasketItems.Add(currentBasketItem);
+
                 }
+			//currentBasket.TotalPrice = 0;
+			//foreach (var item in currentBasket.BasketItems)
+			//{
+			//	currentBasket.TotalPrice += item.SaleQuantity * item.UnitPrice;
+			//}
 
-            currentBasket.TotalPrice = currentBasket.BasketItems.Sum(p => p.SaleQuantity * p.UnitPrice);
 
-                await _context.SaveChangesAsync();
+			await _context.SaveChangesAsync();
             
 
             return RedirectToAction("Index", "Shop");
@@ -108,11 +114,12 @@ namespace Foxic_Backend_Project_.Controllers
 
         public async Task<IActionResult> DeleteBasketItem(int id)
         {
-            User? user = null;
+            User? user = new();
 
 			if (User.Identity.IsAuthenticated)
 			{
 				user = await _userManager.FindByNameAsync(User.Identity.Name);
+
 			}
 			else
 			{
@@ -133,16 +140,17 @@ namespace Foxic_Backend_Project_.Controllers
                     if (userActiveBasket != null)
                     {
                         userActiveBasket.BasketItems.Remove(itemproducts);
-                        userActiveBasket.TotalPrice = userActiveBasket.BasketItems.Sum(p => p.SaleQuantity * p.UnitPrice);
+					userActiveBasket.TotalPrice = userActiveBasket.BasketItems.Sum(p => p.SaleQuantity * p.UnitPrice);
 
-                        await _context.SaveChangesAsync();
+					_context.Remove(itemproducts);
+                    _context.SaveChanges();
                     }
                 }
             
 
             return RedirectToAction("Index", "Shop");
         }
-
+        
         public async Task<IActionResult> AddWishList(int productId)
         {
 			Product product = await _context.Products.FindAsync(productId);

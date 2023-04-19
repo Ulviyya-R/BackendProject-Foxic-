@@ -21,14 +21,19 @@ namespace Foxic_Backend_Project_.Areas.FoxicArea.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            IEnumerable<Product> products = _context.Products.Include(p => p.ProductSizeColors).ThenInclude(p => p.Size)
+			ViewBag.TotalPage = Math.Ceiling((double)_context.Products.Count() / 4);
+			ViewBag.CurrentPage = page;
+
+			IEnumerable<Product> products = _context.Products.Include(p => p.ProductSizeColors).ThenInclude(p => p.Size)
                                                        .Include(p => p.ProductSizeColors).ThenInclude(p => p.Color)
                                                         .Include(p => p.ProductImages)
                                                         .Include(p=>p.Collection)
                                                         .AsNoTracking()
-                                                        .AsEnumerable();
+														.Skip((page - 1) * 4)
+                                                        .Take(4)
+														.AsEnumerable();
             return View(products);
         }
 

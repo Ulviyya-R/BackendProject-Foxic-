@@ -50,7 +50,7 @@ namespace Foxic_Backend_Project_.Controllers
 				}
 				return View();
 			}
-			await _userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+			await _userManager.AddToRoleAsync(user, Roles.Member.ToString());
 			return RedirectToAction("Login", "Account");
 
 		}

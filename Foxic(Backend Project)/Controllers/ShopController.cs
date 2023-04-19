@@ -3,6 +3,7 @@ using Foxic_Backend_Project_.Entities;
 using Foxic_Backend_Project_.Utilites;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
 using System.Numerics;
@@ -20,12 +21,12 @@ namespace Foxic_Backend_Project_.Controllers
 			_userManager = userManager;
 		}
 
-		public IActionResult Index()
+		public IActionResult Index(int page)
 		{
 			ViewBag.Products = _context.Products.Include(p => p.ProductSizeColors).ThenInclude(psc => psc.Color)
 											 .Include(p => p.ProductImages)
 											 .Include(p => p.Collection)
-											 .Take(8).
+											 .Take(20).
 											 ToList();
 			return View();
 		}
@@ -117,30 +118,34 @@ namespace Foxic_Backend_Project_.Controllers
             }
         }
 		[HttpPost]
-        public async Task<IActionResult> EditAddcomment(int? commentId, Comment updatedComment)
-        {
-            if (!User.Identity.IsAuthenticated)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            else
-            {
-				var comment = await _context.Comments.FirstOrDefaultAsync(p => p.Id == commentId);
+		public async Task<IActionResult> DeleteComment(int commentId)
+		{
+			if (!User.Identity.IsAuthenticated)
+			{
+				return RedirectToAction("Login", "Account");
+			}
+
+			Comment comment = await _context.Comments
+				.Include(c => c.User)
+				.FirstOrDefaultAsync(c => c.Id == commentId);
+
+			if (comment == null)
+			{
+				return NotFound();
+			}
+
+			if (comment.User.UserName != User.Identity.Name)
+			{
+				return Forbid();
+			}
+
+			_context.Remove(comment);
+			await _context.SaveChangesAsync();
+			
 
 
-                if (comment == null)
-                {
-                    return NotFound();
-                }
-
-                comment.Text = updatedComment.Text;
-                comment.CreationTime= DateTime.UtcNow;
-
-                await _context.SaveChangesAsync();
-
-                return RedirectToAction(nameof(Index));
-            }
-        }
+			return RedirectToAction(nameof(Detail), new { id = comment.ProductId });
+		}
 
 
 

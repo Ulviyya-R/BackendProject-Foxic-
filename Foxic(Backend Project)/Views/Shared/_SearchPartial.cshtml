@@ -3,8 +3,8 @@
     @foreach(Product product in Model)
     {
         <li class="list-group-item" style="margin-top:5px">
-            <a asp-controller="" asp-action="" asp-route-id="@product.Id">
-					<img src="~/assets/images/skins/fashion/products/@product.ProductImages.FirstOrDefault(pi=>pi.IsMain==true)?.Path" alt="@product.Name" class="js-prd-img lazyload fade-up">
+            <a asp-controller="Shop" asp-action="Detail" asp-route-id="@product.Id">
+					<img style="width:50px;height:50px" src="~/assets/images/skins/fashion/products/@product.ProductImages.FirstOrDefault(pi=>pi.IsMain==true)?.Path" alt="@product.Name" class="js-prd-img lazyload fade-up">
             <p>@product.DiscountPrice</p>
             <p>@product.Price</p>
             <p>@product.Name</p>

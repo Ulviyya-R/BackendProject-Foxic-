@@ -15,6 +15,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Foxic HTML Template - Index Page</title>
+	  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.ico" />
 	<!-- Vendor CSS -->
 	<link href="~/assets/css/vendor/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +26,7 @@
 	<link href="~/assets/fonts/icomoon/icons.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Open%20Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+     @RenderSection("CSS",false)
 </head>
 <body class="has-smround-btns has-loader-bg equal-height">
 	<!--header-->
@@ -50,14 +52,37 @@
 							<!-- Header Search -->
 							<div class="search_container_desktop">
 								<div class="dropdn dropdn_search dropdn_fullwidth">
-									<a href="#" class="dropdn-link  js-dropdn-link only-icon">@Html.Raw(settings["Search Icon"])<span class="dropdn-link-txt">Search</span></a>
+									<a class="dropdn-link  js-dropdn-link only-icon">@Html.Raw(settings["Search Icon"])<span class="dropdn-link-txt">Search</span></a>
 									<div class="dropdn-content">
 										<div class="container">
-											<form method="get" action="#" class="search search-off-popular">
-												<input name="search" type="text" class="search-input input-empty" placeholder="What are you looking for?">
-												<button type="submit" class="search-button"><i class="icon-search"></i></button>
+											<form method="post" action="#" class="search search-off-popular">
+												<input id="search" name="search" type="search" class="search-input input-empty" placeholder="What are you looking for?">
+												<button type="submit" id="search-button" class="search-button"><i class="icon-search"></i></button>
+												<ul class="list-group search-list">
+												</ul>
 												<a href="#" class="search-close js-dropdn-close"><i class="icon-close-thin"></i></a>
 											</form>
+											<script>
+												$('#search-button').click(function (event) {
+													event.preventDefault();
+													let search = $('#search').val();
+													$.ajax({
+														url: '/Home/Search',
+														method: 'get',
+														data: { search: search },
+														success: function (resp) {
+															$('.search-list').html(resp);
+															console.log(resp);
+														}
+													});
+												});
+											</script>
+
+
+
+
+
+
 										</div>
 									</div>
 								</div>
@@ -85,8 +110,6 @@
 									@Html.Raw(settings["Basket Icon"])
 										@foreach(var item in BasketItemVM)
 					{
-						Product? product = layoutService.GetProducts().FirstOrDefault(p=>p.Id == item.ProductId);
-						BasketItem? basket = BasketItemm.FirstOrDefault(b=>b.ProductSizeColorId == item.ProductSizeColorId);
 									<span class="minicart-qty">@item.Quantity</span>
 					}
 								</a>
@@ -214,12 +237,12 @@
 								<!-- Header Search -->
 								<div class="search_container_desktop">
 									<div class="dropdn dropdn_search dropdn_fullwidth">
-										<a href="#" class="dropdn-link  js-dropdn-link only-icon">@Html.Raw(settings["Search Icon"])<span class="dropdn-link-txt">Search</span></a>
+										<a  class="dropdn-link  js-dropdn-link only-icon">@Html.Raw(settings["Search Icon"])<span class="dropdn-link-txt">Search</span></a>
 										<div class="dropdn-content">
 											<div class="container">
 												<form method="post" action="#" class="search search-off-popular">
 													<input id="search" name="search" type="search" class="search-input input-empty" placeholder="What are you looking for?">
-													<button type="submit" class="search-button"><i class="icon-search"></i></button>
+          									<button type="submit" id="search-button" class="search-button"><i class="icon-search"></i></button>
 													<ul class="list-group search-list">
 
 
@@ -227,17 +250,26 @@
 													<a href="#" class="search-close js-dropdn-close"><i class="icon-close-thin"></i></a>
 												</form>
 												<script>
-													$('#search').keyup(function (){
-														let search = $(this).val();
-														$.ajax({
-															url: 'https://localhost:7284/Home/Search?search=>' + search,
-															method:'get',
-															success:function(resp){
-																$('.search-list').html(resp);
-															}
-														})
-													})
-													</script>
+             $('#search-button').click(function (event){
+    event.preventDefault();
+    let search = $('#search').val();
+    $.ajax({
+        url: '/Home/Search',
+        method:'get',
+        data: { search: search },
+        success:function(resp){
+            $('.search-list').html(resp);
+            console.log(resp);
+        }
+    });
+});
+</script>
+
+
+
+
+
+
 											</div>
 										</div>
 									</div>
@@ -267,8 +299,6 @@
 										@Html.Raw(settings["Basket Icon"])
 										@foreach (var item in BasketItemVM)
 										{
-											Product? product = layoutService.GetProducts().FirstOrDefault(p => p.Id == item.ProductId);
-											BasketItem? basket = BasketItemm.FirstOrDefault(b => b.ProductSizeColorId == item.ProductSizeColorId);
 											<span class="minicart-qty">@item.Quantity</span>
 										}
 									</a>
@@ -349,7 +379,7 @@
 									<li>
 										<a href="cart.html">Cart & Checkout<span class="arrow"><i class="icon-angle-right"></i></span></a>
 										<ul class="nav-level-3">
-											<li><a href="cart.html">Cart Page</a></li>
+											<li><a asp-controller="Cart" asp-action="Index">Cart Page</a></li>
 											<li><a href="cart-empty.html">Empty cart</a></li>
 											<li><a href="checkout.html">Checkout variant 1</a></li>
 											<li><a href="checkout-2.html">Checkout variant 2</a></li>
@@ -551,8 +581,7 @@
 								<a asp-controller="Order" asp-action="DeleteBasketItem" asp-route-id="@basket.Id"  data-line-number="1"><i class="icon-recycle"></i></a>
 							</div>
 						</div>
-
-						}
+							}
 					}
 					<div class="minicart-empty js-minicart-empty d-none">
 						<div class="minicart-empty-text">Your cart is empty</div>
@@ -582,14 +611,16 @@
 						</div>
 					</div>
 				</div>
+					
 				<div class="minicart-drop-fixed js-hide-empty">
 					<div class="loader-horizontal-sm js-loader-horizontal-sm" data-loader-horizontal=""><span></span></div>
 					<div class="minicart-drop-total js-minicart-drop-total row no-gutters align-items-center">
 						<div class="minicart-drop-total-txt col-auto heading-font">Subtotal</div>
+
 						<div class="minicart-drop-total-price col" data-header-cart-total="">$@BasketItemm.Sum(b=>b.UnitPrice*b.SaleQuantity)</div>
 					</div>
 					<div class="minicart-drop-actions">
-						<a href="cart.html" class="btn btn--md btn--grey"><i class="icon-basket"></i><span>Cart Page</span></a>
+						<a asp-controller="Cart" asp-action="Index"  class="btn btn--md btn--grey"><i class="icon-basket"></i><span>Cart Page</span></a>
 						<a href="checkout.html" class="btn btn--md"><i class="icon-checkout"></i><span>Check out</span></a>
 					</div>
 					<ul class="payment-link mb-2">
@@ -920,5 +951,6 @@
 		<script src="~/assets/js/vendor-special/instafeed.min.js"></script>
 		<script src="~/assets/js/vendor/vendor.min.js"></script>
 		<script src="~/assets/js/app-html.js"></script>
+		@RenderSection("Scripts",false)
 </body>
 </html>
